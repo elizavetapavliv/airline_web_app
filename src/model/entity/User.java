@@ -10,10 +10,10 @@ import javax.persistence.Table;
 /**User class*/
 @Entity
 @Table(name="client")
-public class User implements Serializable {
+public class User {
 	
 	/**Serial version UID*/
-	private static final long serialVersionUID = 1L;
+	//private static final long serialVersionUID = 1L;
 	
 	/**Secret admin code*/
 	public static final String ADMIN_CODE = "admin";

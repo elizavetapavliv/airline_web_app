@@ -15,6 +15,10 @@
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://ec2-54-228-251-117.eu-west-1.compute.amazonaws.com:5432/data9uq0cgo999?sslmode=require" />
 			<property name="javax.persistence.jdbc.user" value="apugtfccgqifho" />
 			<property name="javax.persistence.jdbc.password" value="8c48dac59ebe215e4d67521b3758302a29bf6a6ac07eb969472fa64b12cb81dc" />
+			 <property
+                name="eclipselink.weaving"
+                value="static"
+           	 />
 		</properties>
 	</persistence-unit>
 </persistence>

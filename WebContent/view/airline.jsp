@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+${pageContext.ELContext.importHandler.importClass('java.net.URLDecoder')}
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,8 +11,8 @@
 <body>
 	<h1 class="info">Авиакомпания</h1>
 	<p class="info">
-		Последний сеанс: ${cookie['lastSessionDateTime'].getValue()}<br>
-		Количество посещений ресурса: ${cookie['numberOfVisits'].getValue()}<br>
+		Последний сеанс: ${URLDecoder.decode(cookie['lastSessionDateTime'].getValue(), 'UTF-8')}<br>
+		Количество посещений ресурса: ${URLDecoder.decode(cookie['numberOfVisits'].getValue(), 'UTF-8')}<br>
 		Вы зашли как ${sessionScope['user'].getType()}
 	</p>
 	<ul class="menu">
