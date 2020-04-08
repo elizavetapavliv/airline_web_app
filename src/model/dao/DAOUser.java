@@ -43,7 +43,7 @@ public class DAOUser extends DAO {
 			if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
 			}
-			throw new DAOException("Can't insert user", e);
+			throw new DAOException(/*"Can't insert user"*/ e.getMessage(), e);
 		}
 		finally {
 			if(entityManager != null && entityManager.isOpen()) {
