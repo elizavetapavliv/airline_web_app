@@ -1,6 +1,8 @@
 package model.command;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -264,9 +266,15 @@ public class JSPOperation {
 	private void startNewSessionAndUpdateCookies(User user) {
 		HttpSession session = request.getSession();
 	    session.setAttribute("user", user);
-		
-		Cookie lastSessionDateTime = new Cookie("lastSessionDateTime",  
-				new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()));
+	    
+	    String date;
+		try {
+			date = URLEncoder.encode(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()), "utf-8");
+		} 
+		catch (UnsupportedEncodingException e) {
+			date  = "Unsupported";
+		}	
+		Cookie lastSessionDateTime = new Cookie("lastSessionDateTime", date);
 		lastSessionDateTime.setComment("Time and date of the last user session");
 		Cookie numberOfVisits = new Cookie("numberOfVisits", "1");
 		numberOfVisits.setComment("The number of visits to the resource.");
