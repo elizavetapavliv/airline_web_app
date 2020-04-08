@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,11 +28,12 @@ public class AirlineServlet extends HttpServlet {
 	private CommandManager commandManager;
 	
 	/**Entity manager factory*/
+	@PersistenceUnit(unitName="Airline")
 	private EntityManagerFactory entityManagerFactory;
 	
 	@Override
 	public void init() {
-		entityManagerFactory = (EntityManagerFactory)getServletContext().getAttribute("emf");
+		//entityManagerFactory = (EntityManagerFactory)getServletContext().getAttribute("emf");
 	}
 	
 	@Override
