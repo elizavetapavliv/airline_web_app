@@ -10,8 +10,8 @@
 <body>
 	<h1 class="info">Авиакомпания</h1>
 	<p class="info">
-		Последний сеанс: ${cookie["lastSessionDateTime"].getValue()}<br>
-		Количество посещений ресурса: ${cookie["numberOfVisits"].getValue()}<br>
+		Последний сеанс: ${cookie['lastSessionDateTime'].getValue()}<br>
+		Количество посещений ресурса: ${cookie['numberOfVisits'].getValue()}<br>
 		Вы зашли как ${sessionScope['user'].getType()}
 	</p>
 	<ul class="menu">
