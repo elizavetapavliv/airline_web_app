@@ -77,7 +77,7 @@ public class DAOUser extends DAO {
 	        return null;
 	    }
 		catch (Exception e) {
-			throw new DAOException("Can't obtain user", e);
+			throw new DAOException(/*"Can't obtain user"*/e.getMessage(), e);
 		} 
 		finally {
 			if(entityManager != null && entityManager.isOpen()) {
