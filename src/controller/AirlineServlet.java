@@ -29,7 +29,7 @@ public class AirlineServlet extends HttpServlet {
 	
 	/**Entity manager factory*/
 	@PersistenceUnit(unitName="Airline")
-	private static EntityManagerFactory entityManagerFactory;
+	private EntityManagerFactory entityManagerFactory;
 	
 	@Override
 	public void init() {
