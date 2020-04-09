@@ -83,7 +83,12 @@ public class DAOUser extends DAO {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
 			String exceptionAsString = sw.toString();
-			throw new DAOException(/* "Can't obtain user" */exceptionAsString + "\nPassword: " + entityManagerFactory.getProperties().get("javax.persistence.jdbc.password"), e);
+			throw new DAOException(/* "Can't obtain user" */exceptionAsString + 
+					"\nPassword: " + entityManagerFactory.getProperties().get("javax.persistence.jdbc.password")+
+					"\nUser: " + entityManagerFactory.getProperties().get("javax.persistence.jdbc.user")+
+					"\nUrl: " + entityManagerFactory.getProperties().get("javax.persistence.jdbc.url")+
+					"\nDriver: " + entityManagerFactory.getProperties().get("javax.persistence.jdbc.driver"),
+					e);
 		} 
 		finally {
 			if(entityManager != null && entityManager.isOpen()) {
