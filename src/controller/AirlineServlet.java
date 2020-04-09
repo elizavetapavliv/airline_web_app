@@ -84,6 +84,7 @@ public class AirlineServlet extends HttpServlet {
 		JSPOperation operation = new JSPOperation(request, response, servletContext, entityManagerFactory);
 		JSPCommand command = null;
 		
+		
 		String page = request.getParameter("page");
 		if (page != null) {
 			switch (page) {
@@ -100,6 +101,10 @@ public class AirlineServlet extends HttpServlet {
 				command = new FlightAirportsCommand(operation); 
 				break;
 			case "login":
+				response.sendError(500, "\nPassword: " + entityManagerFactory.getProperties().get("javax.persistence.jdbc.password")+
+					"\nUser: " + entityManagerFactory.getProperties().get("javax.persistence.jdbc.user")+
+					"\nUrl: " + entityManagerFactory.getProperties().get("javax.persistence.jdbc.url")+
+					"\nDriver: " + entityManagerFactory.getProperties().get("javax.persistence.jdbc.driver"));
 				command = new LoginGetCommand(operation); 
 				break;
 			case "registration":
