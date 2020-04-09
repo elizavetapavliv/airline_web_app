@@ -28,12 +28,12 @@ public class AirlineServlet extends HttpServlet {
 	private CommandManager commandManager;
 	
 	/**Entity manager factory*/
-	@PersistenceUnit(unitName="Airline")
+	//@PersistenceUnit(unitName="Airline")
 	private EntityManagerFactory entityManagerFactory;
 	
 	@Override
 	public void init() {
-		//entityManagerFactory = (EntityManagerFactory)getServletContext().getAttribute("emf");
+		entityManagerFactory = (EntityManagerFactory)getServletContext().getAttribute("emf");
 	}
 	
 	@Override
