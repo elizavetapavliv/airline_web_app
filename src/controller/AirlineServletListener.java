@@ -12,13 +12,13 @@ public class AirlineServletListener implements ServletContextListener {
 
 	@Override
     public void contextInitialized(ServletContextEvent event) {
-		//EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Airline");
-		//event.getServletContext().setAttribute("emf", entityManagerFactory);
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Airline");
+		event.getServletContext().setAttribute("emf", entityManagerFactory);
     }
 	
 	@Override
     public void contextDestroyed(ServletContextEvent event) {
-		/*EntityManagerFactory entityManagerFactory = (EntityManagerFactory)event.getServletContext().getAttribute("emf");
-		entityManagerFactory.close();*/
+		EntityManagerFactory entityManagerFactory = (EntityManagerFactory)event.getServletContext().getAttribute("emf");
+		entityManagerFactory.close();
     }
 }
