@@ -108,7 +108,7 @@ public class AirlineServlet extends HttpServlet {
 				for(Entry<String, Object> entry: map.entrySet()) {
 					result += entry.getKey() + " " + entry.getValue() + "; ";
 				}
-				response.sendError(500, "\nPassword: " + entityManagerFactory.getProperties().get("javax.persistence.jdbc.password")+
+				response.sendError(500, result + "\nPassword: " + entityManagerFactory.getProperties().get("javax.persistence.jdbc.password")+
 					"\nUser: " + entityManagerFactory.getProperties().get("javax.persistence.jdbc.user")+
 					"\nUrl: " + entityManagerFactory.getProperties().get("javax.persistence.jdbc.url")+
 					"\nDriver: " + entityManagerFactory.getProperties().get("javax.persistence.jdbc.driver"));
