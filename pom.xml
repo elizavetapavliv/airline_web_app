@@ -33,6 +33,11 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>javax.persistence</artifactId>
+			<version>2.2.1</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -69,9 +74,8 @@
 								<processor>org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor
 								</processor>
 							</processors>
-							<options>
-								<eclipselink.persistencexml>'src/META-INF/persistence.xml'</eclipselink.persistencexml>
-							</options>
+							<compilerArguments>-Aeclipselink.persistencexml=src/META-
+								INF/persistence.xml</compilerArguments>
 						</configuration>
 					</execution>
 				</executions>
