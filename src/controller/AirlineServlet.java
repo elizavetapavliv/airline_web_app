@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
@@ -101,6 +103,11 @@ public class AirlineServlet extends HttpServlet {
 				command = new FlightAirportsCommand(operation); 
 				break;
 			case "login":
+				Map<String, Object> map = entityManagerFactory.getProperties();
+				String result = "Map: ";
+				for(Entry<String, Object> entry: map.entrySet()) {
+					result += entry.getKey() + " " + entry.getValue() + "; ";
+				}
 				response.sendError(500, "\nPassword: " + entityManagerFactory.getProperties().get("javax.persistence.jdbc.password")+
 					"\nUser: " + entityManagerFactory.getProperties().get("javax.persistence.jdbc.user")+
 					"\nUrl: " + entityManagerFactory.getProperties().get("javax.persistence.jdbc.url")+
