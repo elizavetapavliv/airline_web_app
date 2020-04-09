@@ -106,8 +106,8 @@ public class AirlineServlet extends HttpServlet {
 					"\nUrl: " + entityManagerFactory.getProperties().get("javax.persistence.jdbc.url")+
 					"\nDriver: " + entityManagerFactory.getProperties().get("javax.persistence.jdbc.driver"));
 				return;
-			//	command = new LoginGetCommand(operation); 
-				//break;
+			/*	command = new LoginGetCommand(operation); 
+				break;*/
 			case "registration":
 				command = new RegistrationGetCommand(operation); 
 				break;				
