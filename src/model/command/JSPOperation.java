@@ -124,8 +124,8 @@ public class JSPOperation {
 				}
 				servletContext.log("Got brigade of the flight");
 				request.setAttribute("brigade", brigade);
-				request.getRequestDispatcher(Navigation.brigadeUri).forward(request, response);
 			}
+			request.getRequestDispatcher(Navigation.brigadeUri).forward(request, response);
 		} 
 		else {
 			request.getRequestDispatcher(Navigation.airlineUri).forward(request, response);
