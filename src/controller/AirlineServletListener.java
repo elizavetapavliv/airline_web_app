@@ -40,7 +40,7 @@ public class AirlineServletListener implements ServletContextListener {
 			e.printStackTrace(new PrintWriter(sw));
 			a += sw.toString();
 		}
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("airline", map);
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Airline", map);
 		event.getServletContext().setAttribute("emf", entityManagerFactory);
 		a+="\nPassword: " + entityManagerFactory.getProperties().get("javax.persistence.jdbc.password")+
 				"\nUser: " + entityManagerFactory.getProperties().get("javax.persistence.jdbc.user")+
