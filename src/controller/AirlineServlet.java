@@ -37,11 +37,11 @@ public class AirlineServlet extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		ServletContext servletContext = getServletContext();
-		
-		String page = request.getParameter("page");
+		ServletContext servletContext = getServletContext();	
 		JSPOperation operation = new JSPOperation(request, response, servletContext, entityManagerFactory);
 		JSPCommand command = null;
+		
+		String page = request.getParameter("page");
 		switch (page) {
 		case "airports":
 			String action = request.getParameter("flight_action");

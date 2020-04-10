@@ -24,7 +24,7 @@ public class AirlineServletListener implements ServletContextListener {
 		String driver = resource.getString("driver");
 		String user = resource.getString("user");
 		String pass = resource.getString("password");
-		Map<String, String> map = new HashMap<>();
+		Map map = new HashMap<>();
 		map.put(PersistenceUnitProperties.JDBC_DRIVER, driver);
 		map.put(PersistenceUnitProperties.JDBC_URL, url);
 		map.put(PersistenceUnitProperties.JDBC_USER, user);
