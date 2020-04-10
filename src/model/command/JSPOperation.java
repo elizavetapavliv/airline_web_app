@@ -113,16 +113,24 @@ public class JSPOperation {
 	 * @throws ServletException - something wrong with servlet request 
 	 */
 	public void getFlightBrigade() throws AirlineException, DAOException, ServletException, IOException {
-		String flightId = request.getParameter("flight_id_brigade");
-		if (flightId != null) {
-			Brigade brigade = daoBrigade.readBrigadeByFlight(Integer.parseInt(flightId));
-			if (brigade == null) {
-				throw new AirlineException("Brigade wasn't assigned to this flight or flight doesn't exist");
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		if (!user.getType().equals("guest")) {
+			String flightId = request.getParameter("flight_id_brigade");
+			if (flightId != null) {
+				Brigade brigade = daoBrigade.readBrigadeByFlight(Integer.parseInt(flightId));
+				if (brigade == null) {
+					throw new AirlineException("Brigade wasn't assigned to this flight or flight doesn't exist");
+				}
+				servletContext.log("Got brigade of the flight");
+				request.setAttribute("brigade", brigade);
+				request.getRequestDispatcher(Navigation.brigadeUri).forward(request, response);
 			}
-			servletContext.log("Got brigade of the flight");
-			request.setAttribute("brigade", brigade);
+		} 
+		else {
+			request.getRequestDispatcher(Navigation.airlineUri).forward(request, response);
 		}
-		request.getRequestDispatcher(Navigation.brigadeUri).forward(request, response);
+
 	}
 	
 	/**
@@ -135,26 +143,33 @@ public class JSPOperation {
 	 */
 	public void getFlightAirports()
 			throws DAOException, AirlineException, ServletException, IOException {
-		String flightId = request.getParameter("flight_id_airports");
-		if (flightId != null) {
-			int id = Integer.parseInt(flightId);
-			Flight flight = daoFlight.readFlight(id);
-			if (flight == null) {
-				throw new AirlineException("Flight with this id doesn't exist");
-			}
-			servletContext.log("Got flight data");
-			int fromAirportId = flight.getFromAirportId();
-			int toAirportId = flight.getToAirportId();
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		if (user.getType().equals("admin")) {
+			String flightId = request.getParameter("flight_id_airports");
+			if (flightId != null) {
+				int id = Integer.parseInt(flightId);
+				Flight flight = daoFlight.readFlight(id);
+				if (flight == null) {
+					throw new AirlineException("Flight with this id doesn't exist");
+				}
+				servletContext.log("Got flight data");
+				int fromAirportId = flight.getFromAirportId();
+				int toAirportId = flight.getToAirportId();
 
-			List<Airport> toFromAirports = daoAirport.readAirports(fromAirportId, toAirportId);
-			servletContext.log("Got departure and destination airoports of flight");
-			request.setAttribute("airports", toFromAirports);
-			request.setAttribute("flight_id", id);
-			request.setAttribute("from_airport_id", fromAirportId);
+				List<Airport> toFromAirports = daoAirport.readAirports(fromAirportId, toAirportId);
+				servletContext.log("Got departure and destination airoports of flight");
+				request.setAttribute("airports", toFromAirports);
+				request.setAttribute("flight_id", id);
+				request.setAttribute("from_airport_id", fromAirportId);
+			}
+			request.getRequestDispatcher(Navigation.airportsUri).forward(request, response);
+		} 
+		else {
+			request.getRequestDispatcher(Navigation.airlineUri).forward(request, response);
 		}
-		request.getRequestDispatcher(Navigation.airportsUri).forward(request, response);
 	}
-	
+
 	/**
 	 * Function for deleting flight
 	 * @throws DAOException - when connection or query execution aren't successful 
@@ -180,26 +195,33 @@ public class JSPOperation {
 	 * @throws AirlineException - if destination airport id is incorrect
 	 */
 	public void updateDestinationAirport() throws DAOException, ServletException, IOException, AirlineException {
-		int flightId = Integer.parseInt(request.getParameter("flight_id"));
-		int fromAirportId = Integer.parseInt(request.getParameter("flight_id"));
-		int airportId = Integer.parseInt(request.getParameter("airport_id"));
-		if (airportId == fromAirportId) {
-			throw new AirlineException("Destination airport cannot match departure airport");
-		} 
-		List<Airport> airports = daoAirport.readAllAirports();
-		int size = airports.size();
-		int i;
-		for (i = 0; i < size; i++) {
-			if (airports.get(i).getId() == airportId) {
-				break;
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		if (user.getType().equals("admin")) {
+			int flightId = Integer.parseInt(request.getParameter("flight_id"));
+			int fromAirportId = Integer.parseInt(request.getParameter("flight_id"));
+			int airportId = Integer.parseInt(request.getParameter("airport_id"));
+			if (airportId == fromAirportId) {
+				throw new AirlineException("Destination airport cannot match departure airport");
 			}
+			List<Airport> airports = daoAirport.readAllAirports();
+			int size = airports.size();
+			int i;
+			for (i = 0; i < size; i++) {
+				if (airports.get(i).getId() == airportId) {
+					break;
+				}
+			}
+			if (i == size) {
+				throw new AirlineException("Airport with this id doesn't exist");
+			}
+			daoFlight.updateFlightToAirport(flightId, airportId);
+			servletContext.log("Changed destination airport of the flight");
+			request.getRequestDispatcher(Navigation.airportsUri).forward(request, response);
+		} 
+		else {
+			request.getRequestDispatcher(Navigation.airlineUri).forward(request, response);
 		}
-		if (i == size) {
-			throw new AirlineException("Airport with this id doesn't exist");
-		}
-		daoFlight.updateFlightToAirport(flightId, airportId);
-		servletContext.log("Changed destination airport of the flight");
-		request.getRequestDispatcher(Navigation.airportsUri).forward(request, response);
 	}
 	
 	public void goToLoginPage() throws ServletException, IOException {
