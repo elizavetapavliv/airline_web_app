@@ -291,5 +291,4 @@ public class JSPOperation {
 		response.addCookie(lastSessionDateTime);
 		response.addCookie(numberOfVisits);
 	}
-	
 }

@@ -1,8 +1,5 @@
 package model.dao;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -80,15 +77,7 @@ public class DAOUser extends DAO {
 	        return null;
 	    }
 		catch (Exception e) {
-			StringWriter sw = new StringWriter();
-			e.printStackTrace(new PrintWriter(sw));
-			String exceptionAsString = sw.toString();
-			throw new DAOException(/* "Can't obtain user" */exceptionAsString + 
-					"\nPassword: " + entityManagerFactory.getProperties().get("javax.persistence.jdbc.password")+
-					"\nUser: " + entityManagerFactory.getProperties().get("javax.persistence.jdbc.user")+
-					"\nUrl: " + entityManagerFactory.getProperties().get("javax.persistence.jdbc.url")+
-					"\nDriver: " + entityManagerFactory.getProperties().get("javax.persistence.jdbc.driver"),
-					e);
+			throw new DAOException( "Can't obtain user", e);
 		} 
 		finally {
 			if(entityManager != null && entityManager.isOpen()) {

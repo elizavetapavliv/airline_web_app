@@ -1,11 +1,8 @@
 package controller;
 
 import java.io.IOException;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceUnit;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,7 +27,6 @@ public class AirlineServlet extends HttpServlet {
 	private CommandManager commandManager;
 	
 	/**Entity manager factory*/
-	//@PersistenceUnit(unitName="Airline")
 	private EntityManagerFactory entityManagerFactory;
 	
 	@Override
@@ -80,12 +76,10 @@ public class AirlineServlet extends HttpServlet {
 	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {	
-		
+			throws IOException, ServletException {			
 		ServletContext servletContext = getServletContext();
 		JSPOperation operation = new JSPOperation(request, response, servletContext, entityManagerFactory);
 		JSPCommand command = null;
-		
 		
 		String page = request.getParameter("page");
 		if (page != null) {
@@ -103,19 +97,8 @@ public class AirlineServlet extends HttpServlet {
 				command = new FlightAirportsCommand(operation); 
 				break;
 			case "login":
-				Map<String, Object> map = entityManagerFactory.getProperties();
-				String result = "Map: ";
-				for(Entry<String, Object> entry: map.entrySet()) {
-					result += entry.getKey() + " " + entry.getValue() + "; ";
-				}
-				String a = (String)servletContext.getAttribute("a");
-				response.sendError(500, a + result + "\nPassword: " + entityManagerFactory.getProperties().get("javax.persistence.jdbc.password")+
-					"\nUser: " + entityManagerFactory.getProperties().get("javax.persistence.jdbc.user")+
-					"\nUrl: " + entityManagerFactory.getProperties().get("javax.persistence.jdbc.url")+
-					"\nDriver: " + entityManagerFactory.getProperties().get("javax.persistence.jdbc.driver"));
-				return;
-			/*	command = new LoginGetCommand(operation); 
-				break;*/
+				command = new LoginGetCommand(operation); 
+				break;
 			case "registration":
 				command = new RegistrationGetCommand(operation); 
 				break;				
@@ -137,6 +120,5 @@ public class AirlineServlet extends HttpServlet {
 			servletContext.log(message);
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,  message);
 		}
-
 	}
 }

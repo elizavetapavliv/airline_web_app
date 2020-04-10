@@ -1,7 +1,5 @@
 package model.dao;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,10 +50,7 @@ public class DAOFlight extends DAO {
 			flights = entityManager.createQuery(cq).getResultList();
 		} 
 		catch (Exception e) {
-			StringWriter sw = new StringWriter();
-			e.printStackTrace(new PrintWriter(sw));
-			String exceptionAsString = sw.toString();
-			throw new DAOException(/*"Can't obtain flights list"*/exceptionAsString, e);
+			throw new DAOException("Can't obtain flights list", e);
 		} 
 		finally {
 			if(entityManager != null && entityManager.isOpen()) {

@@ -30,7 +30,7 @@ public class RegistrationFilter implements Filter {
 		if (page != null && adminCode != null && 
 				page.equals("registration") && !adminCode.isEmpty() && !adminCode.equals(User.ADMIN_CODE)) {
 			httpRequest.setAttribute("adminCodeError",
-					"Admin code is incorrect. Try again or leave field empty and login as user.");
+					"Admin code is incorrect. Try again or leave the field blank and log in as a user.");
 			httpRequest.getRequestDispatcher(Navigation.registrationUri).forward(httpRequest, response);
 			return;
 		}
