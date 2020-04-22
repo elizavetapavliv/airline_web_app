@@ -1,4 +1,46 @@
-const dom = (function () {
+const dom = (function (language) {
+	
+	const locale = language == 'en'? en: ru;
+	
+	let en = {
+		registration: 'Sign up',
+		guest: 'Log in as a guest',
+		signInExist: 'Sign in with an existing account',
+		password: 'Password',
+		signIn: 'Sign in',
+		repeatPassword: 'Repeat password',
+		adminCode: 'Administrator code',
+		code: 'Code (optional)',
+		signUp: 'Sign up and login'
+		flightId: 'Flight id',
+		sumbit: 'Submit',
+		changeAirport: 'Change destination airport',
+		airportId: 'New airport id',
+		cancel: 'Cancel flight',
+		match: "Passwords don't match",
+		update: 'Update',
+		save: 'Save'
+	}
+	
+	let ru = {
+		registration: 'Зарегистрироваться',
+		guest: 'Войти как гость',
+		signInExist: 'Войти через существующий аккаунт',
+		password: 'Пароль',
+		signIn: 'Войти',
+		repeatPassword: 'Повторите пароль',
+		adminCode: 'Код администратора',
+		code: 'Код (не обязательно)',
+		signUp: 'Зарегистрироваться и войти',
+		flightId: 'Номер рейса',
+		submit: 'Подтвердить'
+		changeAirport: 'Изменить аэропорт назначения рейса',
+		airportId: 'Номер нового аэропорта',
+		cancel: 'Отменить рейс',
+		match: 'Пароли не совпадают',
+		update: 'Изменить',
+		save: 'Сохранить'
+	}
 	
 	var input, airportInput;
 	
@@ -10,7 +52,7 @@ const dom = (function () {
 		},	
 		{
             type: 'submit',
-            value: 'Зарегистрироваться'
+            value: locale[registration]
         }		
 	];	
 	
@@ -22,7 +64,7 @@ const dom = (function () {
 		},	
 		{
             type: 'submit',
-            value: 'Войти как гость'
+            value: locale[guest]
         }		
 	];	
 	
@@ -34,7 +76,7 @@ const dom = (function () {
 		},	
 		{
             type: 'submit',
-            value: 'Войти через существующий аккаунт'
+            value: locale[signInExist]
         }		
 	];	
 	
@@ -46,8 +88,8 @@ const dom = (function () {
             type: 'email'
 		},
 		{	
-			label: 'Пароль',
-            placeholder: 'Пароль',
+			label: locale[password],
+            placeholder: locale[password],
             name: 'password',
             type: 'password'
 		},
@@ -58,7 +100,7 @@ const dom = (function () {
 		},	
 		{
             type: 'submit',
-            value: 'Войти'
+            value: locale[signIn]
         }		
 	];
     
@@ -70,20 +112,20 @@ const dom = (function () {
             type: 'email'
 		},
 		{	
-			label: 'Пароль',
-            placeholder: 'Пароль',
+			label: locale[password],
+            placeholder: locale[password],
             name: 'password',
             type: 'password'
 		},
 		{	
-			label: 'Повторите пароль',
-            placeholder: 'Пароль',
+			label: locale[repeatPassword],
+            placeholder: locale[password],
             name: 'repeat_password',
             type: 'password'
 		},
 		{	
-			label: 'Код администратора',
-            placeholder: 'Код (не обязательно)',
+			label: locale[adminCode],
+            placeholder: locale[code],
             name: 'admin_code',
             type: 'password'
 		},
@@ -94,13 +136,13 @@ const dom = (function () {
 		},
 		{
             type: 'submit',
-            value: 'Зарегистрироваться и войти'
+            value: locale[signUp]
         }		
 	];
 	
     const flightIdBrigadeFormArray = [
 		{	
-			label: 'Номер рейса',
+			label: locale[flightId],
             placeholder: 'Id',
             name: 'flight_id_brigade',
             type: 'number',
@@ -113,14 +155,13 @@ const dom = (function () {
 		},
 		{
             type: 'submit',
-            value: 'Подтвердить'
+            value: locale[submit]
         }
-	
 	];
     
     const flightIdAirportsFormArray = [
 		{	
-			label: 'Номер рейса',
+			label: locale[flightId],
             placeholder: 'Id',
             name: 'flight_id_airports',
             type: 'number',
@@ -133,7 +174,7 @@ const dom = (function () {
 		},
 		{
             type: 'submit',
-            value: 'Подтвердить'
+            value: locale[submit],
         }
 	
 	];
@@ -143,11 +184,11 @@ const dom = (function () {
 			type: 'radio',
 			class: 'choice_radio',
 			name: 'flight_action',
-			label: 'Изменить аэропорт назначения рейса',
+			label: locale[changeAirport],
 			value: 'change_airport',
             page: 'airports',
 			idInput: {	
-				placeholder: 'New airport id',
+				placeholder: locale[airportId],
 				id: 'input_airport_id',
 				type: 'number',
 	            name: 'airport_id',
@@ -158,7 +199,7 @@ const dom = (function () {
 			type: 'radio',
 			class: 'choice_radio',
 			name: 'flight_action',
-			label: 'Отменить рейс',
+			label: locale[cancel],
 			value: 'cancel_flight'
 		},
 		{
@@ -364,7 +405,7 @@ const dom = (function () {
     	repeat_password = document.getElementById("repeat_password");
     	
     	if(password.value != repeat_password.value) {
-    		repeat_password.setCustomValidity("Passwords don't match");
+    		repeat_password.setCustomValidity(locale[match]);
     	} 
     	else{
     		repeat_password.setCustomValidity("");
@@ -424,8 +465,8 @@ const dom = (function () {
     }
     
     function onUpdadeClicked(){
-    	if(event.srcElement.value == 'Update'){
-    		event.srcElement.value = 'Save';
+    	if(event.srcElement.value == locale[update]){
+    		event.srcElement.value = locale[save];
     		
     		switch(event.srcElement.id){
     		case 'ipilot1':
@@ -444,7 +485,7 @@ const dom = (function () {
     		event.preventDefault();
     	}
     	else{
-    		event.srcElement.value = 'Update';
+    		event.srcElement.value = locale[update];
     		
         	const form = event.srcElement.form;
         	const hidden = document.createElement('input');
@@ -498,5 +539,3 @@ const dom = (function () {
     }
 
 }());
-
-dom.initPage();

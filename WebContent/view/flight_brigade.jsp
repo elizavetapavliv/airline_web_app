@@ -5,16 +5,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Flight brigade</title>
+<title><fmt:message key="flightBrigade" /></title>
 <link href="view/styles.css" rel="stylesheet">
 </head>
 <body>
-	<h1 class="info">Вывести информацию о бригаде заданного рейса</h1>
+	<jsp:include page="language.jsp" />
+	<h1 class="info"><fmt:message key="brigadeInfo" /></h1>
 	<form id="flight_id_brigade_form" action="Airline"></form>
 	<c:if test="${not empty brigade}">
 		<brigadeTag:getBrigade/>
 	</c:if>
-	<a href="Airline">На главную</a>
-	<script src="view/script.js"></script>
+	<a href="Airline"><fmt:message key="toHome" /></a>
+	<script src="view/script.js">dom("${sessionScope.locale.language}").initPage();</script>
 </body>
 </html>

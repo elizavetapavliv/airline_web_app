@@ -1,20 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>   
+<fmt:requestEncoding value="UTF-8"/>
+<fmt:setLocale value="${sessionScope.locale}"/>
+<fmt:setBundle basename="locale"/>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Delayed flights</title>
+<title><fmt:message key="delayed"/></title>
 <link href="view/styles.css" rel="stylesheet">
 </head>
 <body>
-	<h1 class="info">Вывести информацию о задержанных рейсах</h1>	
+	<jsp:include page="language.jsp" />
+	<h1 class="info"><fmt:message key="delayedFlights"/></h1>	
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Id</th><th>Passengers number</th><th>Distance</th>
-				<th>Brigade id</th><th>Plane id</th><th>Departure airport id</th>
-				<th>Arrival airport id</th><th>Is delayed</th>
+				<th><fmt:message key="id" /></th>
+				<th><fmt:message key="passengers" /></th>
+				<th><fmt:message key="distance" /></th>
+				<th><fmt:message key="brigade" /></th>
+				<th><fmt:message key="plane" /></th>
+				<th><fmt:message key="departureAirport" /></th>
+				<th><fmt:message key="arrivalAirport" /></th>
+				<th><fmt:message key="isDelayed" /></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -42,6 +52,6 @@
     		</c:forEach>
     	</tbody>
 	</table>
-	<a href="Airline">На главную</a>
+	<a href="Airline"><fmt:message key="toHome" /></a>
 </body>
 </html>

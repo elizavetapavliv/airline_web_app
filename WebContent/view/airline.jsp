@@ -18,14 +18,14 @@ ${pageContext.ELContext.importHandler.importClass('java.net.URLDecoder')}
 	<p class="info">
 		<fmt:message key="lastSession"/>: ${URLDecoder.decode(cookie['lastSessionDateTime'].getValue(), 'UTF-8')}<br>
 		<fmt:message key="numberOfVisits"/>: ${cookie['numberOfVisits'].getValue()}<br>
-		<fmt:message key="role"/> <fmt:message key="${sessionScope['user'].getType()}"/>
+		<fmt:message key="role"/> <fmt:message key="${sessionScope.user.getType()}"/>
 	</p>
 	<ul class="menu">
-		<c:if test="${sessionScope['user'].getType() != 'guest'}">
+		<c:if test="${sessionScope.user.getType() != 'guest'}">
 			<li><a href="Airline?page=brigade"><fmt:message key="brigadeInfo"/></a></li>
 		</c:if>
 		<li><a href="Airline?page=flights"><fmt:message key="allFlights"/></a></li>
-		<c:if test="${sessionScope['user'].getType() == 'admin'}">
+		<c:if test="${sessionScope.user.getType() == 'admin'}">
 			<li><a href="Airline?page=airports"><fmt:message key="updateCancel"/></a></li>
 		</c:if>
 		<li><a href="Airline?page=delayed"><fmt:message key="delayedFlights"/></a></li>
