@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 ${pageContext.ELContext.importHandler.importClass('java.net.URLDecoder')}
 <fmt:requestEncoding value="UTF-8"/>
-<fmt:setLocale value="${sessionScope.choosenLocale}"/>
+<fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="locale"/>
 <!DOCTYPE html>
 <html>
@@ -15,12 +15,12 @@ ${pageContext.ELContext.importHandler.importClass('java.net.URLDecoder')}
 <body>
 	<jsp:include page="language.jsp" />
 	<fmt:parseDate value="${URLDecoder.decode(cookie['lastSessionDateTime'].getValue(), 'UTF-8')}" 
-		pattern="EEE MMM dd HH:mm:ss zzz yyyy" type="both" var="parsedDatetime" />
+		type="both" var="parsedDatetime" />
 	<fmt:formatDate pattern="dd.MM.yyyy HH:mm:ss" value="${parsedDatetime}" var="decodedDate"/>
 	<h1 class="info"><fmt:message key="airline"/></h1>
 	<p class="info">
 		<fmt:message key="lastSession"/>: ${decodedDate}<br>
-		<fmt:message key="numberOfVisits"/>: ${URLDecoder.decode(cookie['numberOfVisits'].getValue(), 'UTF-8')}<br>
+		<fmt:message key="numberOfVisits"/>: ${cookie['numberOfVisits'].getValue()}<br>
 		<fmt:message key="role"/> <fmt:message key="${sessionScope['user'].getType()}"/>
 	</p>
 	<ul class="menu">
