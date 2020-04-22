@@ -28,7 +28,9 @@ public class DAOBrigade extends DAO {
 	
 	/**
 	 * Function for updating brigade
-	 * @param brigade - brigade
+	 * @param brigadeId - brigade id
+	 * @param field - field of brigade entity
+	 * @param value - new field value
 	 * @throws DAOException - when connection or query execution aren't successful 
 	 */
 	public void updateBrigade(int brigadeId, String field, String value) throws DAOException {

@@ -53,7 +53,7 @@ public class AirlineServlet extends HttpServlet {
 			}
 			break;
 		case "brigade":
-			command = new LoginPostCommand(operation);
+			command = new UpdateBrigadeCommand(operation);
 			break;
 		case "login":
 			command = new LoginPostCommand(operation);
