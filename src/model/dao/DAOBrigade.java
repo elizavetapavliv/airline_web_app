@@ -25,6 +25,43 @@ public class DAOBrigade extends DAO {
 	public DAOBrigade(EntityManagerFactory entityManagerFactory) {
 		super(entityManagerFactory);
 	}
+	
+	/**
+	 * Function for updating brigade
+	 * @param brigade - brigade
+	 * @throws DAOException - when connection or query execution aren't successful 
+	 */
+	public void updateBrigade(int brigadeId, String field, String value) throws DAOException {
+		EntityManager entityManager = null;
+	    EntityTransaction transaction = null;
+		try {
+			entityManager = entityManagerFactory.createEntityManager();
+			transaction = entityManager.getTransaction();
+			
+			Metamodel metamodel = entityManager.getMetamodel();		
+			EntityType<Brigade> Brigade_ = metamodel.entity(Brigade.class);
+			CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+			CriteriaUpdate<Brigade> cu = cb.createCriteriaUpdate(Brigade.class);
+			Root<Brigade> brigade = cu.from(Brigade_);
+			cu.set(field, value).where(cb.equal(brigade.get("id"), brigadeId));
+		
+			transaction.begin();	
+			entityManager.createQuery(cu).executeUpdate();
+			transaction.commit();
+		} 
+		catch (Exception e) {
+			if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+			}
+			throw new DAOException("Can't update brigade " + field, e);
+		}
+		finally {
+			if(entityManager != null && entityManager.isOpen()) {
+				entityManager.close();
+			}
+		}
+	}
+
 
 	/**
 	 * Function for getting brigade of flight

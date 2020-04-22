@@ -402,7 +402,9 @@ const dom = (function () {
     	const flightIdBrigadeForm = document.getElementById('flight_id_brigade_form');
     	if (flightIdBrigadeForm != null) {
             buildForm(flightIdBrigadeForm, 'flightIdBrigadeForm');
-            return
+            var input = document.getElementsByTagName("update");
+            inputList.forEach(brigadeAction);
+            return;
         }
         
     	const flightIdAirportsForm = document.getElementById('flight_id_airports_form');
@@ -416,6 +418,50 @@ const dom = (function () {
         }	
     }
 
+    function brigadeAction(value, index, ar){
+    	value.onclick = onUpdadeClicked;
+    }
+    
+    function onUpdadeClicked(){
+    	if(event.srcElement.value == 'Update'){
+    		event.srcElement.contenteditable = true;
+    		event.srcElement.value = 'Save';
+    		event.preventDefault();
+    	}
+    	else{
+    		event.srcElement.contenteditable = false;
+    		event.srcElement.value = 'Update';
+    		
+        	const form = event.srcElement.form;
+        	const hidden = document.createElement('input');
+        	hidden.name = 'brigade_id';
+        	hidden.type = 'hidden';
+        	hidden.value = document.getElementById('bId').innerHtml;
+            form.appendChild(hidden);	
+            
+         	const hidden2 = document.createElement('input');
+        	hidden2.type = 'hidden';
+        	switch(event.srcElement.id){
+        		case 'ipilot1':
+        			hidden2.name = 'pilot1';
+        			hidden2.value = document.getElementById('pilot1').innerHtml;
+        			break;
+        		case 'ipilot2':
+            		hidden2.name = 'pilot2';
+                    hidden2.value = document.getElementById('pilot2').innerHtml;
+            		break;
+        		case 'inavigator':
+            		hidden2.name = 'navigator';
+                    hidden2.value = document.getElementById('navigator').innerHtml;
+            		break;
+        		case 'ioperator':
+            		hidden2.name = 'operator';
+                    hidden2.value = document.getElementById('operator').innerHtml;
+            		break;
+        	}
+    	}
+    }
+    
 	function onAirportChecked() {
 		var airportId = document.getElementById('input_airport_id');
 		airportId.hidden = false;

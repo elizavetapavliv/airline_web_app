@@ -52,6 +52,9 @@ public class AirlineServlet extends HttpServlet {
 				command = new DeleteFlightCommand(operation);
 			}
 			break;
+		case "brigade":
+			command = new LoginPostCommand(operation);
+			break;
 		case "login":
 			command = new LoginPostCommand(operation);
 			break;

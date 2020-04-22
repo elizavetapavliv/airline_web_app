@@ -106,7 +106,6 @@ public class JSPOperation {
 	
 	/**
 	 * Function for getting flight brigade
-	 * @param flightId - flight id
 	 * @throws DAOException - when connection or query execution aren't successful 
 	 * @throws AirlineException - when flight has no brigade
 	 * @throws IOException - something wrong with servlet request 
@@ -125,6 +124,7 @@ public class JSPOperation {
 				servletContext.log("Got brigade of the flight");
 				request.setAttribute("brigade", brigade);
 			}
+		
 			request.getRequestDispatcher(Navigation.brigadeUri).forward(request, response);
 		} 
 		else {
@@ -135,7 +135,6 @@ public class JSPOperation {
 	
 	/**
 	 * Function for getting flight destination and departure airports
-	 * @param flightId - flight id
 	 * @throws DAOException - when connection or query execution aren't successful 
 	 * @throws AirlineException - when flight doesn't exist 
 	 * @throws IOException - something wrong with servlet request 
@@ -221,6 +220,35 @@ public class JSPOperation {
 		} 
 		else {
 			request.getRequestDispatcher(Navigation.airlineUri).forward(request, response);
+		}
+	}
+	
+	public void updateBrigade() throws DAOException, ServletException, IOException {
+		int brigadeId = Integer.parseInt(request.getParameter("brigade_id"));
+		
+		String pilot1 = request.getParameter("pilot1");
+		if(pilot1 != null) {
+			daoBrigade.updateBrigade(brigadeId, "pilot1", pilot1);
+			request.getRequestDispatcher(Navigation.brigadeUri).forward(request, response);
+			return;
+		}
+		String pilot2 = request.getParameter("pilot2");
+		if(pilot2 != null) {
+			daoBrigade.updateBrigade(brigadeId, "pilot2", pilot2);
+			request.getRequestDispatcher(Navigation.brigadeUri).forward(request, response);
+			return;
+		}
+		String navigator = request.getParameter("navigator");
+		if(navigator != null) {
+			daoBrigade.updateBrigade(brigadeId, "navigator", navigator);
+			request.getRequestDispatcher(Navigation.brigadeUri).forward(request, response);
+			return;
+		}
+		String operator = request.getParameter("operator");
+		if(operator != null) {
+			daoBrigade.updateBrigade(brigadeId, "radioOperator", operator);
+			request.getRequestDispatcher(Navigation.brigadeUri).forward(request, response);
+			return;
 		}
 	}
 	

@@ -11,6 +11,7 @@
 	<h1 class="info">Вывести информацию о бригаде заданного рейса</h1>
 	<form id="flight_id_brigade_form" action="Airline"></form>
 	<c:if test="${not empty brigade}">
+		<p id="flight_id" hidden="true">${brigade.flight.id}</p>
 		<table class="vertical_table">
 			<tr>
 				<th>Id</th>
