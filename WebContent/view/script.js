@@ -429,16 +429,16 @@ const dom = (function () {
     		
     		switch(event.srcElement.id){
     		case 'ipilot1':
-    			document.getElementById('pilot1').contenteditable = true;
+    			document.getElementById('pilot1').contentEditable = 'true';
     			break;
     		case 'ipilot2':
-    			document.getElementById('pilot2').contenteditable = true;
+    			document.getElementById('pilot2').contentEditable = 'true';
         		break;
     		case 'inavigator':
-        		document.getElementById('navigator').contenteditable = true;
+        		document.getElementById('navigator').contentEditable = 'true';
         		break;
     		case 'ioperator':
-        		document.getElementById('operator').contenteditable = true;
+        		document.getElementById('operator').contentEditable  = 'true';
         		break;
     		}
     		event.preventDefault();
