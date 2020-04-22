@@ -137,3 +137,12 @@ h1.error{
     display: inline;
     vertical-align: middle;
 }
+
+.language{
+	text-align: right;
+	margin-right: 25px;
+}
+
+.language select{
+	font-family: consolas;
+}
