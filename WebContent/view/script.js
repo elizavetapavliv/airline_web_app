@@ -33,7 +33,7 @@ const dom = (function (language) {
 		code: 'Код (не обязательно)',
 		signUp: 'Зарегистрироваться и войти',
 		flightId: 'Номер рейса',
-		submit: 'Подтвердить'
+		submit: 'Подтвердить',
 		changeAirport: 'Изменить аэропорт назначения рейса',
 		airportId: 'Номер нового аэропорта',
 		cancel: 'Отменить рейс',
