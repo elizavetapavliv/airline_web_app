@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 ${pageContext.ELContext.importHandler.importClass('java.net.URLDecoder')}
 <fmt:requestEncoding value="UTF-8"/>
-<fmt:setLocale value="${sessionScope.locale}"/>
+<fmt:setLocale value="${sessionScope['locale']}"/>
 <fmt:setBundle basename="locale"/>
 <!DOCTYPE html>
 <html>
