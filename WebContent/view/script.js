@@ -444,7 +444,6 @@ const dom = (function () {
     		event.preventDefault();
     	}
     	else{
-    		event.srcElement.contenteditable = false;
     		event.srcElement.value = 'Update';
     		
         	const form = event.srcElement.form;
@@ -456,24 +455,28 @@ const dom = (function () {
             
          	const hidden2 = document.createElement('input');
         	hidden2.type = 'hidden';
+        	var td;
         	switch(event.srcElement.id){
         		case 'ipilot1':
+        			td = document.getElementById('pilot1');
         			hidden2.name = 'pilot1';
-        			hidden2.value = document.getElementById('pilot1').innerHtml;
         			break;
         		case 'ipilot2':
+        			td = document.getElementById('pilot2');
             		hidden2.name = 'pilot2';
-                    hidden2.value = document.getElementById('pilot2').innerHtml;
             		break;
         		case 'inavigator':
-            		hidden2.name = 'navigator';
-                    hidden2.value = document.getElementById('navigator').innerHtml;
+        			td = document.getElementById('navigator');
+            		hidden2.name = 'navigator';                   
             		break;
         		case 'ioperator':
+        			td = document.getElementById('operator');
             		hidden2.name = 'operator';
-                    hidden2.value = document.getElementById('operator').innerHtml;
             		break;
         	}
+        	td.contentEditable = 'false';
+        	hidden2.value = td.innerHtml;
+        	form.appendChild(hidden2);	
     	}
     }
     
