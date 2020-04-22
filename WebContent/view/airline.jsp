@@ -13,7 +13,7 @@ ${pageContext.ELContext.importHandler.importClass('java.net.URLDecoder')}
 <link href="view/styles.css" rel="stylesheet"/>
 </head>
 <body>
-	<jsp:include page="view/language.jsp" />
+	<jsp:include page="language.jsp" />
 	<fmt:parseDate value="${cookie['lastSessionDateTime'].getValue()}" type="both" var="parsedDatetime" />
 	<fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${parsedDatetime}" var="decodedDate"/>
 	<h1 class="info"><fmt:message key="airline"/></h1>
