@@ -3,14 +3,9 @@ package model.command;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.text.DateFormat;
-import java.time.LocalDate;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import javax.persistence.EntityManagerFactory;
 import javax.servlet.ServletContext;
@@ -331,10 +326,7 @@ public class JSPOperation {
 	    
 	    String date;
 		try {
-			ZonedDateTime zoned = ZonedDateTime.now();
-			DateTimeFormatter pattern = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)
-					.withLocale((Locale) (session.getAttribute("locale")));
-			date = URLEncoder.encode(zoned.format(pattern), "UTF-8");
+			date = URLEncoder.encode(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date()), "UTF-8");
 		} 
 		catch (UnsupportedEncodingException e) {
 			date = "Unsupported";
