@@ -27,8 +27,12 @@ public class BrigadeTag extends TagSupport {
 			isAdmin = user.getType().equals("admin");
 
 			pageContext.getOut().write("<table class=\"vertical_table\">");
-			pageContext.getOut().write("<tr><th>Id</th><td id=\"bId\">" + brigade.getId() + "</td><td></td></tr>");
-
+			pageContext.getOut().write("<tr><th>Id</th><td id=\"bId\">" + brigade.getId() + "</td>");
+			if(isAdmin) {
+				pageContext.getOut().write("<td></td>");
+			}
+			pageContext.getOut().write("</tr>");
+			
 			pageContext.getOut().write("<tr><th>Pilot 1</th><td id=\"pilot1\">" + brigade.getPilot1() + "</td>");
 			writeAdminColumn("ipilot1");
 
@@ -48,7 +52,11 @@ public class BrigadeTag extends TagSupport {
 				pageContext.getOut()
 						.write("<tr><td>" + stewardess.getId() + "</td><td>" + stewardess.getName() + "</td></tr>");
 			}
-			pageContext.getOut().write("</tbody></table></td><td></td></tr></table>");
+			pageContext.getOut().write("</tbody></table></td>");
+			if(isAdmin) {
+				pageContext.getOut().write("<td></td>");
+			}
+			pageContext.getOut().write("</tr></table>");
 		} 
 		catch (IOException e) {
 			throw new JspTagException(e.getMessage());
