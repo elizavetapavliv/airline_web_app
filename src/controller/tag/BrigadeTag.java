@@ -26,7 +26,7 @@ public class BrigadeTag extends TagSupport {
 			Brigade brigade = (Brigade) pageContext.getAttribute("brigade", PageContext.REQUEST_SCOPE);
 			isAdmin = user.getType().equals("admin");
 
-			pageContext.getOut().write("table class=\"vertical_table\"");
+			pageContext.getOut().write("<table class=\"vertical_table\">");
 			pageContext.getOut().write("<tr><th>Id</th><td id=\"bId\">" + brigade.getId() + "</td><td></td></tr>");
 
 			pageContext.getOut().write("<tr><th>Pilot 1</th><td id=\"pilot1\">" + brigade.getPilot1() + "</td>");
