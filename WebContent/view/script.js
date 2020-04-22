@@ -11,7 +11,7 @@ const dom = (function (language) {
 		repeatPassword: 'Repeat password',
 		adminCode: 'Administrator code',
 		code: 'Code (optional)',
-		signUp: 'Sign up and login'
+		signUp: 'Sign up and login',
 		flightId: 'Flight id',
 		sumbit: 'Submit',
 		changeAirport: 'Change destination airport',
