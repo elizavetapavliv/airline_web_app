@@ -26,7 +26,7 @@ public class BrigadeTag extends TagSupport {
 			Brigade brigade = (Brigade) pageContext.getAttribute("brigade", PageContext.REQUEST_SCOPE);
 			isAdmin = user.getType().equals("admin");
 
-			pageContext.getOut().write("<table class=\"vertical_table\">");
+			pageContext.getOut().write("<table id=\"brigade_table\" class=\"vertical_table\">");
 			pageContext.getOut().write("<tr><th>Id</th><td id=\"bId\">" + brigade.getId() + "</td>");
 			if(isAdmin) {
 				pageContext.getOut().write("<td></td>");
@@ -74,7 +74,7 @@ public class BrigadeTag extends TagSupport {
 			pageContext.getOut()
 					.write("<td><form action=\"Airline\" method=\"POST\">"
 							+ "<input name=\"page\" type=\"hidden\" value=\"brigade\">"
-							+ "<input id=" + id + " name=\"update\" type=\"submit\" value=\"Update\"></form></td>");
+							+ "<input id=" + id + " name=\"update\" type=\"submit\" value=\"Update\" style=\"margin-left:0px\"></form></td>");
 		}
 		pageContext.getOut().write("</tr>");
 	}

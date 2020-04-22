@@ -425,8 +425,22 @@ const dom = (function () {
     
     function onUpdadeClicked(){
     	if(event.srcElement.value == 'Update'){
-    		event.srcElement.contenteditable = true;
     		event.srcElement.value = 'Save';
+    		
+    		switch(event.srcElement.id){
+    		case 'ipilot1':
+    			document.getElementById('pilot1').contenteditable = true;
+    			break;
+    		case 'ipilot2':
+    			document.getElementById('pilot2').contenteditable = true;
+        		break;
+    		case 'inavigator':
+        		document.getElementById('navigator').contenteditable = true;
+        		break;
+    		case 'ioperator':
+        		document.getElementById('operator').contenteditable = true;
+        		break;
+    		}
     		event.preventDefault();
     	}
     	else{

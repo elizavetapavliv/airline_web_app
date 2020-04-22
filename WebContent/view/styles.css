@@ -81,6 +81,10 @@ input {
 	width: 50%;
 }
 
+#brigade_table td:last-child{
+	width:5%;
+}
+
 .table thead tr:first-child{
 	height: 50px;
 }
