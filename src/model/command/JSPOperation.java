@@ -224,31 +224,38 @@ public class JSPOperation {
 	}
 	
 	public void updateBrigade() throws DAOException, ServletException, IOException {
-		int brigadeId = Integer.parseInt(request.getParameter("brigade_id"));
-		
-		String pilot1 = request.getParameter("pilot1");
-		if(pilot1 != null) {
-			daoBrigade.updateBrigade(brigadeId, "pilot1", pilot1);
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		if (user.getType().equals("admin")) {
+			int brigadeId = Integer.parseInt(request.getParameter("brigade_id"));
+
+			String pilot1 = request.getParameter("pilot1");
+			if (pilot1 != null) {
+				daoBrigade.updateBrigade(brigadeId, "pilot1", pilot1);
+				request.getRequestDispatcher(Navigation.brigadeUri).forward(request, response);
+				return;
+			}
+			String pilot2 = request.getParameter("pilot2");
+			if (pilot2 != null) {
+				daoBrigade.updateBrigade(brigadeId, "pilot2", pilot2);
+				request.getRequestDispatcher(Navigation.brigadeUri).forward(request, response);
+				return;
+			}
+			String navigator = request.getParameter("navigator");
+			if (navigator != null) {
+				daoBrigade.updateBrigade(brigadeId, "navigator", navigator);
+				request.getRequestDispatcher(Navigation.brigadeUri).forward(request, response);
+				return;
+			}
+			String operator = request.getParameter("operator");
+			if (operator != null) {
+				daoBrigade.updateBrigade(brigadeId, "radioOperator", operator);
+				request.getRequestDispatcher(Navigation.brigadeUri).forward(request, response);
+				return;
+			}
+		} 
+		else {
 			request.getRequestDispatcher(Navigation.brigadeUri).forward(request, response);
-			return;
-		}
-		String pilot2 = request.getParameter("pilot2");
-		if(pilot2 != null) {
-			daoBrigade.updateBrigade(brigadeId, "pilot2", pilot2);
-			request.getRequestDispatcher(Navigation.brigadeUri).forward(request, response);
-			return;
-		}
-		String navigator = request.getParameter("navigator");
-		if(navigator != null) {
-			daoBrigade.updateBrigade(brigadeId, "navigator", navigator);
-			request.getRequestDispatcher(Navigation.brigadeUri).forward(request, response);
-			return;
-		}
-		String operator = request.getParameter("operator");
-		if(operator != null) {
-			daoBrigade.updateBrigade(brigadeId, "radioOperator", operator);
-			request.getRequestDispatcher(Navigation.brigadeUri).forward(request, response);
-			return;
 		}
 	}
 	
@@ -324,7 +331,7 @@ public class JSPOperation {
 		catch (UnsupportedEncodingException e) {
 			date = "Unsupported";
 		}
-		Cookie lastSessionDateTime = new Cookie("lastSessionDateTime", date);
+		Cookie lastSessionDateTime = new Cookie("lastSessionDateTime", new Date().toString());
 		lastSessionDateTime.setComment("Time and date of the last user session");
 		Cookie numberOfVisits = new Cookie("numberOfVisits", "1");
 		numberOfVisits.setComment("The number of visits to the resource.");

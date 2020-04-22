@@ -1,32 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 ${pageContext.ELContext.importHandler.importClass('java.net.URLDecoder')}
+<fmt:requestEncoding value="UTF-8"/>
+<fmt:setLocale value="${sessionScope.language}"/>
+<fmt:setBundle basename="locale"/>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Airline</title>
+<title><fmt:message key="airline"/></title>
 <link href="view/styles.css" rel="stylesheet"/>
 </head>
 <body>
-	<h1 class="info">Авиакомпания</h1>
+	<jsp:include page="view/language.jsp" />
+	<fmt:parseDate value="${cookie['lastSessionDateTime'].getValue()}" type="both" var="parsedDatetime" />
+	<h1 class="info"><fmt:message key="airline"/></h1>
 	<p class="info">
-		Последний сеанс: ${URLDecoder.decode(cookie['lastSessionDateTime'].getValue(), 'UTF-8')}<br>
-		Количество посещений ресурса: ${URLDecoder.decode(cookie['numberOfVisits'].getValue(), 'UTF-8')}<br>
-		Вы зашли как ${sessionScope['user'].getType()}
+		<fmt:message key="lastSession"/>: <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${parsedDatetime}"/><br>
+		<fmt:message key="numberOfVisits"/>: ${URLDecoder.decode(cookie['numberOfVisits'].getValue(), 'UTF-8')}<br>
+		<fmt:message key="role"/> <fmt:message key="${sessionScope['user'].getType()}"/>
 	</p>
 	<ul class="menu">
 		<c:if test="${sessionScope['user'].getType() != 'guest'}">
-			<li><a href="Airline?page=brigade">Вывести информацию о бригаде заданного рейса</a></li>
+			<li><a href="Airline?page=brigade"><fmt:message key="brigadeInfo"/></a></li>
 		</c:if>
-		<li><a href="Airline?page=flights">Вывести список всех рейсов</a></li>
+		<li><a href="Airline?page=flights"><fmt:message key="allFlights"/></a></li>
 		<c:if test="${sessionScope['user'].getType() == 'admin'}">
-			<li><a href="Airline?page=airports">Изменить аэропорт назначения рейса, отменить рейс</a></li>
+			<li><a href="Airline?page=airports"><fmt:message key="updateCancel"/></a></li>
 		</c:if>
-		<li><a href="Airline?page=delayed">Вывести информацию о задержанных рейсах</a></li>
+		<li><a href="Airline?page=delayed"><fmt:message key="delayedFlights"/></a></li>
 	</ul>
-	<form action="Airline?page=logout" method = "POST">
-		<input type="submit" value="Выйти">
+	
+	<fmt:message key="logOut" var="logOut"/>
+	<form action="Airline?page=logout" method="POST">
+		<input type="submit" value="${logOut}">
 	</form>
 </body>
 </html>
