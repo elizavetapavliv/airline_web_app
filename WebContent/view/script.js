@@ -402,7 +402,7 @@ const dom = (function () {
     	const flightIdBrigadeForm = document.getElementById('flight_id_brigade_form');
     	if (flightIdBrigadeForm != null) {
             buildForm(flightIdBrigadeForm, 'flightIdBrigadeForm');
-            var input = document.getElementsByTagName("update");
+            var input = document.getElementsByName("update");
             var inputList = Array.prototype.slice.call(input);
             inputList.forEach(brigadeAction);
             return;
