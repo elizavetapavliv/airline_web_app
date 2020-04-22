@@ -38,7 +38,7 @@ public class BrigadeTag extends TagSupport {
 			pageContext.getOut().write("<tr><th>Navigator</th><td id=\"navigator\">" + brigade.getNavigator() + "</td>");
 			writeAdminColumn("inavigator");
 
-			pageContext.getOut().write("<tr><th>Radio operator</th><td=\"operator\">" + brigade.getRadioOperator() + "</td>");
+			pageContext.getOut().write("<tr><th>Radio operator</th><td id=\"operator\">" + brigade.getRadioOperator() + "</td>");
 			writeAdminColumn("ioperator");
  
 			pageContext.getOut().write("<tr><th>Stewardesses</th><td>"
