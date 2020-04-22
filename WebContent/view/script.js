@@ -403,6 +403,7 @@ const dom = (function () {
     	if (flightIdBrigadeForm != null) {
             buildForm(flightIdBrigadeForm, 'flightIdBrigadeForm');
             var input = document.getElementsByTagName("update");
+            var inputList = Array.prototype.slice.call(input);
             inputList.forEach(brigadeAction);
             return;
         }
