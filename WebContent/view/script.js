@@ -1,7 +1,5 @@
-const dom = (function (language) {
-	
-	const locale = language == 'en'? en: ru;
-	
+const dom = function (language) {
+		
 	let en = {
 		registration: 'Sign up',
 		guest: 'Log in as a guest',
@@ -42,6 +40,7 @@ const dom = (function (language) {
 		save: 'Сохранить'
 	}
 	
+	const locale = language == 'en'? en: ru;
 	var input, airportInput;
 	
 	const loginRegistrationFormArray = [
@@ -537,5 +536,4 @@ const dom = (function (language) {
     return {
         initPage
     }
-
-}());
+};
