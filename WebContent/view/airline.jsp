@@ -15,9 +15,10 @@ ${pageContext.ELContext.importHandler.importClass('java.net.URLDecoder')}
 <body>
 	<jsp:include page="view/language.jsp" />
 	<fmt:parseDate value="${cookie['lastSessionDateTime'].getValue()}" type="both" var="parsedDatetime" />
+	<fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${parsedDatetime}" var="decodedDate"/>
 	<h1 class="info"><fmt:message key="airline"/></h1>
 	<p class="info">
-		<fmt:message key="lastSession"/>: <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${parsedDatetime}"/><br>
+		<fmt:message key="lastSession"/>: "${decodedDate}"<br>
 		<fmt:message key="numberOfVisits"/>: ${URLDecoder.decode(cookie['numberOfVisits'].getValue(), 'UTF-8')}<br>
 		<fmt:message key="role"/> <fmt:message key="${sessionScope['user'].getType()}"/>
 	</p>
