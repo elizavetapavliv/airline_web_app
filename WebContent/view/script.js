@@ -450,7 +450,7 @@ const dom = (function () {
         	const hidden = document.createElement('input');
         	hidden.name = 'brigade_id';
         	hidden.type = 'hidden';
-        	hidden.value = document.getElementById('bId').innerHtml;
+        	hidden.value = document.getElementById('bId').innerText;
             form.appendChild(hidden);	
             
          	const hidden2 = document.createElement('input');
@@ -475,7 +475,7 @@ const dom = (function () {
             		break;
         	}
         	td.contentEditable = 'false';
-        	hidden2.value = td.innerHtml;
+        	hidden2.value = td.innerText;
         	form.appendChild(hidden2);	
     	}
     }
