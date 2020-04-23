@@ -28,6 +28,6 @@
 		<form id="login_registration_form" action="Airline"></form>
 		<form id="login_guest_form" action="Airline" method="POST"></form>
 	</div>
-	<script src="view/script.js">dom("${sessionScope.locale.language}").initPage();</script>
+	<script src="view/script.js">dom(${sessionScope.locale.language}).initPage();</script>
 </body>
 </html>

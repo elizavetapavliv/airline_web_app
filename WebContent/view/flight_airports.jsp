@@ -10,6 +10,7 @@
 <head>
 <title><fmt:message key="airports" /></title>
 <link href="view/styles.css" rel="stylesheet">
+<script src="view/script.js"></script>
 </head>
 <body>
 	<jsp:include page="language.jsp" />
@@ -76,6 +77,6 @@
 		</table>
 	</c:if>
 	<a href="Airline"><fmt:message key="toHome" /></a>
-	<script src="view/script.js">dom("${sessionScope.locale.language}").initPage();</script>
+	<script>dom("${sessionScope.locale.language}").initPage();</script>
 </body>
 </html>
