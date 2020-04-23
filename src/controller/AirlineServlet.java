@@ -81,7 +81,7 @@ public class AirlineServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {			
 		ServletContext servletContext = getServletContext();
-		JSPOperation operation = new JSPOperation(request, response, servletContext, entityManagerFactory);
+		JSPOperation operation = new JSPOperation(request, response, servletContext/*, entityManagerFactory*/);
 		JSPCommand command = null;
 		
 		String page = request.getParameter("page");

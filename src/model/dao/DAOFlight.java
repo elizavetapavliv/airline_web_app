@@ -90,8 +90,8 @@ public class DAOFlight extends DAO {
 	/*	finally {
 			if(entityManager != null && entityManager.isOpen()) {
 				entityManager.close();
-			}*/
-		}
+			}
+		}*/
 		return flights;
 	}
 

@@ -24,7 +24,7 @@ public class DAOUser extends DAO {
 	 * Constructor
 	 * @param entityManagerFactory - entity manager factory
 	 */
-	public DAOUser(EntityManagerFactory entityManagerFactory) {
+	public DAOUser(/*EntityManagerFactory entityManagerFactory*/) {
 		//super(entityManagerFactory);
 	}
 
