@@ -1,12 +1,15 @@
 package model.command;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.naming.NamingException;
 import javax.persistence.EntityManagerFactory;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -63,7 +66,14 @@ public class JSPOperation {
 		daoBrigade = new DAOBrigade();
 		daoPlane = new DAOPlane();
 		daoAirport = new DAOAirport();
-		daoUser = new DAOUser();
+		try {
+			daoUser = new DAOUser();
+		} catch (NamingException e) {
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String exceptionAsString = sw.toString();
+			servletContext.log(exceptionAsString);
+		}
 		this.request = request;
 		this.response = response;
 		this.servletContext = servletContext;
