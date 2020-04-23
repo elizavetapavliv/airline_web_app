@@ -11,7 +11,7 @@ const dom = function (language) {
 		code: 'Code (optional)',
 		signUp: 'Sign up and login',
 		flightId: 'Flight id',
-		sumbit: 'Submit',
+		submit: 'Submit',
 		changeAirport: 'Change destination airport',
 		airportId: 'New airport id',
 		cancel: 'Cancel flight',

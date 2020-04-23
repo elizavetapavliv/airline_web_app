@@ -2,6 +2,7 @@ package controller.filter;
 
 import java.io.IOException;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -33,6 +34,10 @@ public class LanguageFilter implements Filter {
 			if(session.getAttribute("locale") == null){
 				session.setAttribute("locale", request.getLocale());
 			}
+		}
+		Map<String, String[]> parameters = request.getParameterMap();
+		for(Map.Entry<String, String[]> entry: parameters.entrySet()) {
+			httpRequest.setAttribute(entry.getKey(), entry.getValue());
 		}
 		chain.doFilter(request, response);		
 	}

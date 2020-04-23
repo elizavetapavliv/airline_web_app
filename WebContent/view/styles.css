@@ -81,7 +81,7 @@ input {
 	width: 50%;
 }
 
-#brigade_table td:last-child{
+#brigade_table td:nth-child(3){
 	width:5%;
 }
 
