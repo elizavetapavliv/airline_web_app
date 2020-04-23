@@ -20,7 +20,7 @@ import model.exception.DAOException;
 /**User DAO class*/
 public class DAOUser extends DAO {
 	
-	@PersistenceContext(unitName = "Airline")
+	@PersistenceContext(name="persistence/AppMgr", unitName = "Airline")
 	private EntityManager entityManager;
 	
 	/**

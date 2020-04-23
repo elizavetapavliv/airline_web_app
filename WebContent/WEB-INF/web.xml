@@ -3,6 +3,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jsp.org/xml/ns/javaee 
  	http://xmlns.jsp.org/xml/ns/javaee/web-app_3_1.xsd">
+	<display-name>AirlineWebProject</display-name>
+	<session-config>
+		<session-timeout>
+			30
+		</session-timeout>
+	</session-config>
 	<resource-ref>
 		<description>Airline DataSource Reference</description>
 		<res-ref-name>jdbc/DSAirline</res-ref-name>
@@ -14,16 +20,9 @@
 		<persistence-context-ref-name>persistence/AppMgr</persistence-context-ref-name>
 		<persistence-unit-name>Airline</persistence-unit-name>
 	</persistence-context-ref>
-	<display-name>AirlineWebProject</display-name>
-	<session-config>
-		<session-timeout>
-			30
-		</session-timeout>
-	</session-config>
 	<welcome-file-list>
 		<welcome-file>view/login.jsp</welcome-file>
 	</welcome-file-list>
-
 	<error-page>
 		<location>/view/error_page.jsp</location>
 	</error-page>

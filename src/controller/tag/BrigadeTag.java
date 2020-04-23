@@ -20,6 +20,7 @@ public class BrigadeTag extends TagSupport {
 	/**Flag for administrator*/
 	private boolean isAdmin;
 	
+	/**For language properties*/
 	private ResourceBundle bundle;
 
 	@Override
