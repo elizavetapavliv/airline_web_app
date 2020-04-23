@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -17,12 +18,15 @@ import model.exception.DAOException;
 /**Airport DAO class */
 public class DAOAirport extends DAO {
 	
+	@PersistenceContext(unitName = "Airline")
+	private EntityManager entityManager;
+	
 	/**
 	 * Constructor
 	 * @param entityManagerFactory - entity manager factory
 	 */
-	public DAOAirport(EntityManagerFactory entityManagerFactory) {
-		super(entityManagerFactory);
+	public DAOAirport(/*EntityManagerFactory entityManagerFactory*/) {
+	//	super(entityManagerFactory);
 	}
 
 	/**
@@ -35,9 +39,9 @@ public class DAOAirport extends DAO {
 	public List<Airport> readAirports(int fromId, int toId) 
 			throws DAOException {
 		List<Airport> airports = new ArrayList<>();
-		EntityManager entityManager = null;
+	//	EntityManager entityManager = null;
 		try {
-			entityManager = entityManagerFactory.createEntityManager();
+		//	entityManager = entityManagerFactory.createEntityManager();
 			
 			Metamodel metamodel = entityManager.getMetamodel();		
 			EntityType<Airport> Airport_ = metamodel.entity(Airport.class);
@@ -53,11 +57,11 @@ public class DAOAirport extends DAO {
 		catch (Exception e) {
 			throw new DAOException("Can't obtain airports", e);
 		} 
-		finally {
+		/*finally {
 			if(entityManager != null && entityManager.isOpen()) {
 				entityManager.close();
 			}
-		}
+		}*/
 		return airports;
 	}
 	
@@ -68,9 +72,9 @@ public class DAOAirport extends DAO {
 	 */
 	public List<Airport> readAllAirports() throws DAOException {
 		List<Airport> airports = new ArrayList<>();
-		EntityManager entityManager = null;
+		//EntityManager entityManager = null;
 		try {
-			entityManager = entityManagerFactory.createEntityManager();
+			//entityManager = entityManagerFactory.createEntityManager();
 			
 			Metamodel metamodel = entityManager.getMetamodel();		
 			EntityType<Airport> Airport_ = metamodel.entity(Airport.class);
@@ -84,11 +88,11 @@ public class DAOAirport extends DAO {
 		catch (Exception e) {
 			throw new DAOException("Can't obtain airports list", e);
 		} 
-		finally {
+		/*finally {
 			if(entityManager != null && entityManager.isOpen()) {
 				entityManager.close();
 			}
-		}
+		}*/
 		return airports;
 	}
 }

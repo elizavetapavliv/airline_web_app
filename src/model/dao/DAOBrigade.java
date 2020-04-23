@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.CriteriaUpdate;
@@ -18,12 +19,15 @@ import model.exception.DAOException;
 /**Brigade DAO Class*/
 public class DAOBrigade extends DAO {
 
+	@PersistenceContext(unitName = "Airline")
+	private EntityManager entityManager;
+	
 	/**
 	 * Constructor
 	 * @param entityManagerFactory - entity manager factory
 	 */
-	public DAOBrigade(EntityManagerFactory entityManagerFactory) {
-		super(entityManagerFactory);
+	public DAOBrigade(/*EntityManagerFactory entityManagerFactory*/) {
+	//	super(entityManagerFactory);
 	}
 	
 	/**
@@ -34,11 +38,11 @@ public class DAOBrigade extends DAO {
 	 * @throws DAOException - when connection or query execution aren't successful 
 	 */
 	public void updateBrigade(int brigadeId, String field, String value) throws DAOException {
-		EntityManager entityManager = null;
+	/*	EntityManager entityManager = null;
 	    EntityTransaction transaction = null;
-		try {
-			entityManager = entityManagerFactory.createEntityManager();
-			transaction = entityManager.getTransaction();
+*/		try {
+		/*	entityManager = entityManagerFactory.createEntityManager();
+			transaction = entityManager.getTransaction();*/
 			
 			Metamodel metamodel = entityManager.getMetamodel();		
 			EntityType<Brigade> Brigade_ = metamodel.entity(Brigade.class);
@@ -47,21 +51,21 @@ public class DAOBrigade extends DAO {
 			Root<Brigade> brigade = cu.from(Brigade_);
 			cu.set(field, value).where(cb.equal(brigade.get("id"), brigadeId));
 		
-			transaction.begin();	
+		//	transaction.begin();	
 			entityManager.createQuery(cu).executeUpdate();
-			transaction.commit();
+			//transaction.commit();
 		} 
 		catch (Exception e) {
-			if (transaction != null && transaction.isActive()) {
+			/*if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
-			}
+			}*/
 			throw new DAOException("Can't update brigade " + field, e);
 		}
-		finally {
+	/*	finally {
 			if(entityManager != null && entityManager.isOpen()) {
 				entityManager.close();
 			}
-		}
+		}*/
 	}
 
 
@@ -73,9 +77,9 @@ public class DAOBrigade extends DAO {
 	 */
 	public Brigade readBrigadeByFlight(int id) throws DAOException {
 		Brigade brigade = new Brigade();
-		EntityManager entityManager = null;
+		//EntityManager entityManager = null;
 		try {
-			entityManager = entityManagerFactory.createEntityManager();	
+			//entityManager = entityManagerFactory.createEntityManager();	
 			
 			Metamodel metamodel = entityManager.getMetamodel();		
 			EntityType<Brigade> Brigade_ = metamodel.entity(Brigade.class);
@@ -92,11 +96,11 @@ public class DAOBrigade extends DAO {
 		catch (Exception e) {
 			throw new DAOException("Can't obtain brigade", e);
 		} 
-		finally {
+	/*	finally {
 			if(entityManager != null && entityManager.isOpen()) {
 				entityManager.close();
 			}
-		}
+		}*/
 		return brigade.getId() == 0 ? null : brigade;
 	}
 	
@@ -106,12 +110,12 @@ public class DAOBrigade extends DAO {
 	 * @throws DAOException - when connection or query execution aren't successful 
 	 */
 	public void updateBrigadeFlight(int flightId) throws DAOException {
-		EntityManager entityManager = null;
-	    EntityTransaction transaction = null;
+	/*	EntityManager entityManager = null;
+	    EntityTransaction transaction = null;*/
 		try {
-			entityManager = entityManagerFactory.createEntityManager();
+			/*entityManager = entityManagerFactory.createEntityManager();
 			transaction = entityManager.getTransaction();
-			
+			*/
 			Metamodel metamodel = entityManager.getMetamodel();		
 			EntityType<Flight> Flight_ = metamodel.entity(Flight.class);
 			CriteriaBuilder cb = entityManager.getCriteriaBuilder();
@@ -119,20 +123,20 @@ public class DAOBrigade extends DAO {
 			Root<Flight> flight = cu.from(Flight_);
 			cu.set("brigade", null).where(cb.equal(flight.get("id"), flightId));
 		
-			transaction.begin();	
+			//transaction.begin();	
 			entityManager.createQuery(cu).executeUpdate();
-			transaction.commit();
+			//transaction.commit();
 		} 
 		catch (Exception e) {
-			if (transaction != null && transaction.isActive()) {
+		/*	if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
-			}
+			}*/
 			throw new DAOException("Can't update brigade flight", e);
 		}
-		finally {
+	/*	finally {
 			if(entityManager != null && entityManager.isOpen()) {
 				entityManager.close();
 			}
-		}
+		}*/
 	}
 }

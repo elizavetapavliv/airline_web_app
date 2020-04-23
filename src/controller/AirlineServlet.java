@@ -27,18 +27,18 @@ public class AirlineServlet extends HttpServlet {
 	private CommandManager commandManager;
 	
 	/**Entity manager factory*/
-	private EntityManagerFactory entityManagerFactory;
+//	private EntityManagerFactory entityManagerFactory;
 	
 	@Override
 	public void init() {
-		entityManagerFactory = (EntityManagerFactory)getServletContext().getAttribute("emf");
+		//entityManagerFactory = (EntityManagerFactory)getServletContext().getAttribute("emf");
 	}
 	
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		ServletContext servletContext = getServletContext();	
-		JSPOperation operation = new JSPOperation(request, response, servletContext, entityManagerFactory);
+		JSPOperation operation = new JSPOperation(request, response, servletContext/*, entityManagerFactory*/);
 		JSPCommand command = null;
 		
 		String page = request.getParameter("page");

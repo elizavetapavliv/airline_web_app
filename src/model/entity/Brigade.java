@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -41,7 +42,7 @@ public class Brigade implements Serializable {
 	private Flight flight;
 	
 	/**List of stewardesses*/
-    @OneToMany(mappedBy = "brigade", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "brigade", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private List<Stewardess> stewardesses;
 	
 	/**Constructor*/

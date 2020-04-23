@@ -58,12 +58,12 @@ public class JSPOperation {
 	 * @param entityManagerFactory - entity manager factory for dao
 	 */
 	public JSPOperation(HttpServletRequest request, HttpServletResponse response, 
-			ServletContext servletContext, EntityManagerFactory entityManagerFactory) {		
-		daoFlight = new DAOFlight(entityManagerFactory);
-		daoBrigade = new DAOBrigade(entityManagerFactory);
-		daoPlane = new DAOPlane(entityManagerFactory);
-		daoAirport = new DAOAirport(entityManagerFactory);
-		daoUser = new DAOUser(entityManagerFactory);
+			ServletContext servletContext/*, EntityManagerFactory entityManagerFactory*/) {		
+		daoFlight = new DAOFlight();
+		daoBrigade = new DAOBrigade();
+		daoPlane = new DAOPlane();
+		daoAirport = new DAOAirport();
+		daoUser = new DAOUser();
 		this.request = request;
 		this.response = response;
 		this.servletContext = servletContext;
@@ -223,6 +223,12 @@ public class JSPOperation {
 		}
 	}
 	
+	/**
+	 * Function for updating brigade info
+	 * @throws DAOException - when connection or query execution aren't successful 
+	 * @throws IOException - something wrong with servlet request 
+	 * @throws ServletException - something wrong with servlet request 
+	 */
 	public void updateBrigade() throws DAOException, ServletException, IOException {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");

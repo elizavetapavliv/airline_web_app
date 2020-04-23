@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
@@ -21,12 +22,15 @@ import model.exception.DAOException;
 /** Flight DAO class */
 public class DAOFlight extends DAO {
 	
+	@PersistenceContext(unitName = "Airline")
+	private EntityManager entityManager;
+	
 	/**
 	 * Constructor
 	 * @param entityManagerFactory - entity manager factory
 	 */
-	public DAOFlight(EntityManagerFactory entityManagerFactory) {
-		super(entityManagerFactory);
+	public DAOFlight(/*EntityManagerFactory entityManagerFactory*/) {
+		//super(entityManagerFactory);
 	}
 
 	/**
@@ -36,9 +40,9 @@ public class DAOFlight extends DAO {
 	 */
 	public List<Flight> readAllFlights() throws DAOException {
 		List<Flight> flights = new ArrayList<>();
-		EntityManager entityManager = null;
+		//EntityManager entityManager = null;
 		try {
-			entityManager = entityManagerFactory.createEntityManager();
+			//entityManager = entityManagerFactory.createEntityManager();
 			
 			Metamodel metamodel = entityManager.getMetamodel();		
 			EntityType<Flight> Flight_ = metamodel.entity(Flight.class);
@@ -52,11 +56,11 @@ public class DAOFlight extends DAO {
 		catch (Exception e) {
 			throw new DAOException("Can't obtain flights list", e);
 		} 
-		finally {
+	/*	finally {
 			if(entityManager != null && entityManager.isOpen()) {
 				entityManager.close();
 			}
-		}
+		}*/
 		return flights;
 	}
 
@@ -67,9 +71,9 @@ public class DAOFlight extends DAO {
 	 */
 	public List<Flight> readDelayedFlights() throws DAOException {
 		List<Flight> flights = new ArrayList<>();
-		EntityManager entityManager = null;
+		//EntityManager entityManager = null;
 		try {
-			entityManager = entityManagerFactory.createEntityManager();
+			//entityManager = entityManagerFactory.createEntityManager();
 			
 			Metamodel metamodel = entityManager.getMetamodel();		
 			EntityType<Flight> Flight_ = metamodel.entity(Flight.class);
@@ -83,10 +87,10 @@ public class DAOFlight extends DAO {
 		catch (Exception e) {
 			throw new DAOException("Can't obtain delayed flights list", e);
 		} 
-		finally {
+	/*	finally {
 			if(entityManager != null && entityManager.isOpen()) {
 				entityManager.close();
-			}
+			}*/
 		}
 		return flights;
 	}
@@ -99,9 +103,9 @@ public class DAOFlight extends DAO {
 	 */
 	public Flight readFlight(int id) throws DAOException {
 		Flight flight = null;
-		EntityManager entityManager = null;
+		//EntityManager entityManager = null;
 		try {
-			entityManager = entityManagerFactory.createEntityManager();
+			//entityManager = entityManagerFactory.createEntityManager();
 			
 			Metamodel metamodel = entityManager.getMetamodel();		
 			EntityType<Flight> Flight_ = metamodel.entity(Flight.class);
@@ -118,11 +122,11 @@ public class DAOFlight extends DAO {
 		catch (Exception e) {
 			throw new DAOException("Can't obtain flight", e);
 		} 
-		finally {
+		/*finally {
 			if(entityManager != null && entityManager.isOpen()) {
 				entityManager.close();
 			}
-		}
+		}*/
 		return flight;
 	}
 
@@ -132,12 +136,12 @@ public class DAOFlight extends DAO {
 	 * @throws DAOException - when connection or query execution aren't successful
 	 */
 	public void deleteFlight(int flightId) throws DAOException {
-		EntityManager entityManager = null;
-		EntityTransaction transaction = null;
+	/*	EntityManager entityManager = null;
+		EntityTransaction transaction = null;*/
 		try {
-			entityManager = entityManagerFactory.createEntityManager();
+	/*		entityManager = entityManagerFactory.createEntityManager();
 			transaction = entityManager.getTransaction();
-			
+			*/
 			Metamodel metamodel = entityManager.getMetamodel();		
 			EntityType<Flight> Flight_ = metamodel.entity(Flight.class);
 			CriteriaBuilder cb = entityManager.getCriteriaBuilder();
@@ -145,21 +149,21 @@ public class DAOFlight extends DAO {
 			Root<Flight> flight = cd.from(Flight_);
 			cd.where(cb.equal(flight.get("id"), flightId));
 			
-			transaction.begin();
+			//transaction.begin();
 			entityManager.createQuery(cd).executeUpdate();
-			transaction.commit();
+			//transaction.commit();
 		}
 		catch (Exception e) {
-			if (transaction != null && transaction.isActive()) {
+		/*	if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
-			}
+			}*/
 			throw new DAOException("Can't delete flight", e);
 		}
-		finally {
+		/*finally {
 			if(entityManager != null && entityManager.isOpen()) {
 				entityManager.close();
 			}
-		}
+		}*/
 	}
 
 	/**
@@ -169,11 +173,11 @@ public class DAOFlight extends DAO {
 	 * @throws DAOException - when connection or query execution aren't successful
 	 */
 	public void updateFlightToAirport(int id, int toAirportId) throws DAOException {
-		EntityManager entityManager = null;
-		EntityTransaction transaction = null;
+	/*	EntityManager entityManager = null;
+		EntityTransaction transaction = null;*/
 		try {
-			entityManager = entityManagerFactory.createEntityManager();
-			transaction = entityManager.getTransaction();
+			//entityManager = entityManagerFactory.createEntityManager();
+			//transaction = entityManager.getTransaction();
 			
 			Metamodel metamodel = entityManager.getMetamodel();		
 			EntityType<Flight> Flight_ = metamodel.entity(Flight.class);
@@ -182,20 +186,20 @@ public class DAOFlight extends DAO {
 			Root<Flight> flight = cu.from(Flight_);
 			cu.set("toAirportId", toAirportId).where(cb.equal(flight.get("id"), id));
 			
-			transaction.begin();
+		//	transaction.begin();
 			entityManager.createQuery(cu).executeUpdate();
-			transaction.commit();
+			//transaction.commit();
 		} 
 		catch (Exception e) {
-			if (transaction != null && transaction.isActive()) {
+		/*	if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
-			}
+			}*/
 			throw new DAOException("Can't update flight destination airport", e);
 		}
-		finally {
+	/*	finally {
 			if(entityManager != null && entityManager.isOpen()) {
 				entityManager.close();
 			}
-		}
+		}*/
 	}
 }

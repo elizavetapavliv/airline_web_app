@@ -19,7 +19,7 @@ public class AirlineServletListener implements ServletContextListener {
 
 	@Override
     public void contextInitialized(ServletContextEvent event) {	
-		ResourceBundle resource = ResourceBundle.getBundle("database");
+		/*ResourceBundle resource = ResourceBundle.getBundle("database");
 		String url = resource.getString("url");
 		String driver = resource.getString("driver");
 		String user = resource.getString("user");
@@ -33,12 +33,12 @@ public class AirlineServletListener implements ServletContextListener {
 		} catch (Exception e) {}
 		map.put(PersistenceUnitProperties.JDBC_PASSWORD, pass);
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Airline", map);
-		event.getServletContext().setAttribute("emf", entityManagerFactory);
+		event.getServletContext().setAttribute("emf", entityManagerFactory);*/
     }
 	
 	@Override
     public void contextDestroyed(ServletContextEvent event) {
-		EntityManagerFactory entityManagerFactory = (EntityManagerFactory)event.getServletContext().getAttribute("emf");
-		entityManagerFactory.close();
+		/*EntityManagerFactory entityManagerFactory = (EntityManagerFactory)event.getServletContext().getAttribute("emf");
+		entityManagerFactory.close();*/
     }
 }
