@@ -1,16 +1,13 @@
 package model.command;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import javax.naming.NamingException;
-import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityManager;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -19,12 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.dao.*;
-import model.entity.Brigade;
-import model.entity.Flight;
-import model.entity.User;
-import model.exception.AirlineException;
-import model.exception.DAOException;
-import model.entity.Airport;
+import model.entity.*;
+import model.exception.*;
 
 /**Class representing performing operation from request*/
 public class JSPOperation {
@@ -61,12 +54,12 @@ public class JSPOperation {
 	 * @param entityManagerFactory - entity manager factory for dao
 	 */
 	public JSPOperation(HttpServletRequest request, HttpServletResponse response, 
-			ServletContext servletContext/*, EntityManagerFactory entityManagerFactory*/) {		
-		daoFlight = new DAOFlight();
-		daoBrigade = new DAOBrigade();
-		daoPlane = new DAOPlane();
-		daoAirport = new DAOAirport();
-		daoUser = new DAOUser();
+			ServletContext servletContext, EntityManager entityManager) {		
+		daoFlight = new DAOFlight(entityManager);
+		daoBrigade = new DAOBrigade(entityManager);
+		daoPlane = new DAOPlane(entityManager);
+		daoAirport = new DAOAirport(entityManager);
+		daoUser = new DAOUser(entityManager);
 		this.request = request;
 		this.response = response;
 		this.servletContext = servletContext;

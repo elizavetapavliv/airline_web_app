@@ -3,11 +3,9 @@ package model.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.NamingException;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
@@ -20,17 +18,18 @@ import model.entity.Flight;
 import model.exception.DAOException;
 
 /** Flight DAO class */
-public class DAOFlight extends DAO {
+public class DAOFlight{
 	
-	@PersistenceContext(unitName = "Airline")
+	/**Entity manager*/
 	private EntityManager entityManager;
 	
 	/**
 	 * Constructor
-	 * @param entityManagerFactory - entity manager factory
+	 * @param entityManager - entity manager
+	 * @throws NamingException 
 	 */
-	public DAOFlight(/*EntityManagerFactory entityManagerFactory*/) {
-		//super(entityManagerFactory);
+	public DAOFlight(EntityManager entityManager) {
+		this.entityManager = entityManager;
 	}
 
 	/**

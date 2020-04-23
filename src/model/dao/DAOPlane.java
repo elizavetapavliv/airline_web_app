@@ -1,9 +1,7 @@
 package model.dao;
 
+import javax.naming.NamingException;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaUpdate;
 import javax.persistence.criteria.Root;
@@ -14,17 +12,18 @@ import model.entity.Flight;
 import model.exception.DAOException;
 
 /**Plane DAO class*/
-public class DAOPlane extends DAO {
+public class DAOPlane{
 	
-	@PersistenceContext(unitName = "Airline")
+	/**Entity manager*/
 	private EntityManager entityManager;
 	
 	/**
 	 * Constructor
-	 * @param entityManagerFactory - entity manager factory
+	 * @param entityManager - entity manager
+	 * @throws NamingException 
 	 */
-	public DAOPlane(/*EntityManagerFactory entityManagerFactory*/) {
-		//super(entityManagerFactory);
+	public DAOPlane(EntityManager entityManager) {
+		this.entityManager = entityManager;
 	}
 	
 	/**
