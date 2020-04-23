@@ -23,7 +23,6 @@ import model.exception.DAOException;
 
 /**Airline servlet*/
 @WebServlet(name = "AirlineServlet", urlPatterns = "/Airline")
-@PersistenceContext(unitName="my-pu", name="persistence/AppMgr")
 public class AirlineServlet extends HttpServlet {
 
 	/**Serial version UID*/
@@ -35,30 +34,22 @@ public class AirlineServlet extends HttpServlet {
 	/**Entity manager*/
 	//@PersistenceContext(name="persistence/AppMgr" unitName = "Airline")
 	//private EntityManager entityManager;
+	/**Entity manager factory*/
+	private EntityManagerFactory entityManagerFactory;
 	
-	  @PersistenceUnit(unitName = "Airline")
-	  private EntityManagerFactory emf;
+	@Override
+	public void init() {
+		entityManagerFactory = (EntityManagerFactory)getServletContext().getAttribute("emf");
+	}
 	
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		ServletContext servletContext = getServletContext();	
-		
-		EntityManager em = null ;
-		  try {
-			  InitialContext ic = new InitialContext();
-			 em =
-			   (EntityManager) ic.lookup("java:comp/env/persistence/AppMgr");
-			servletContext.log("EM: " + em);
-		} catch (NamingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		servletContext.log("EMF: " + emf);
-		JSPOperation operation = new JSPOperation(request, response, servletContext, em);
+		servletContext.log("EMF: " + entityManagerFactory);
+		JSPOperation operation = new JSPOperation(request, response, servletContext, entityManagerFactory.createEntityManager());
 		JSPCommand command = null;
-		servletContext.log("EMF2: " + emf);
+		servletContext.log("EMF2: " + entityManagerFactory);
 		
 		String page = request.getParameter("page");
 		switch (page) {
@@ -100,7 +91,7 @@ public class AirlineServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {			
 		ServletContext servletContext = getServletContext();
-		JSPOperation operation = new JSPOperation(request, response, servletContext, emf.createEntityManager());
+		JSPOperation operation = new JSPOperation(request, response, servletContext, entityManagerFactory.createEntityManager());
 		JSPCommand command = null;
 		
 		String page = request.getParameter("page");
