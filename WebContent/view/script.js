@@ -33,7 +33,7 @@ const dom = function (language) {
 		flightId: 'Номер рейса',
 		submit: 'Подтвердить',
 		changeAirport: 'Изменить аэропорт назначения рейса',
-		airportId: 'Номер нового аэропорта',
+		airportId: 'Новый номер',
 		cancel: 'Отменить рейс',
 		match: 'Пароли не совпадают',
 		update: 'Изменить',

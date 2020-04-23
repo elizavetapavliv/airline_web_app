@@ -24,8 +24,16 @@ public class LanguageFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		String language = request.getParameter("language");
-		HttpSession session = ((HttpServletRequest) request).getSession();
-		session.setAttribute("locale", language != null ? new Locale(language) : request.getLocale());
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
+		HttpSession session = httpRequest.getSession();
+		if(language != null) {
+			session.setAttribute("locale", new Locale(language));
+		}
+		else {
+			if(session.getAttribute("locale") == null){
+				session.setAttribute("locale", request.getLocale());
+			}
+		}
 		chain.doFilter(request, response);		
 	}
 

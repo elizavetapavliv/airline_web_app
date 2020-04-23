@@ -13,7 +13,7 @@
 </head>
 <body>
 	<jsp:include page="language.jsp" />
-	<h1 class="info"><fmt:message key="alliFlights" /></h1>	
+	<h1 class="info"><fmt:message key="allFlights" /></h1>	
 	<table class="table">
 		<thead>
 			<tr>
