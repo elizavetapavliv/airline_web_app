@@ -45,6 +45,7 @@ public class AirlineServlet extends HttpServlet {
 		ServletContext servletContext = getServletContext();	
 		JSPOperation operation = new JSPOperation(request, response, servletContext/*, entityManagerFactory*/);
 		JSPCommand command = null;
+		entityManager.getTransaction();
 		
 		String page = request.getParameter("page");
 		switch (page) {
