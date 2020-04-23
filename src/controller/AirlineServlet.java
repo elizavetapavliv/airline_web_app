@@ -44,7 +44,7 @@ public class AirlineServlet extends HttpServlet {
 			throws IOException, ServletException {
 		ServletContext servletContext = getServletContext();	
 		
-		EntityManager em ;
+		EntityManager em = null ;
 		  try {
 			  InitialContext ic = new InitialContext();
 			 em =
