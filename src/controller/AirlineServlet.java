@@ -28,8 +28,8 @@ public class AirlineServlet extends HttpServlet {
 	/**Command manager*/
 	private CommandManager commandManager;
 	
-	@PersistenceContext
-	EntityManager entityManager;
+	@PersistenceContext(unitName = "Airline")
+	private EntityManager entityManager;
 	
 	/**Entity manager factory*/
 //	private EntityManagerFactory entityManagerFactory;
@@ -88,7 +88,6 @@ public class AirlineServlet extends HttpServlet {
 		ServletContext servletContext = getServletContext();
 		JSPOperation operation = new JSPOperation(request, response, servletContext/*, entityManagerFactory*/);
 		JSPCommand command = null;
-		entityManager.getTransaction();
 		
 		String page = request.getParameter("page");
 		if (page != null) {
