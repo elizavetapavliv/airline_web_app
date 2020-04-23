@@ -51,7 +51,7 @@ const dom = function (language) {
 		},	
 		{
             type: 'submit',
-            value: locale[registration]
+            value: locale['registration']
         }		
 	];	
 	
@@ -63,7 +63,7 @@ const dom = function (language) {
 		},	
 		{
             type: 'submit',
-            value: locale[guest]
+            value: locale['guest']
         }		
 	];	
 	
@@ -75,7 +75,7 @@ const dom = function (language) {
 		},	
 		{
             type: 'submit',
-            value: locale[signInExist]
+            value: locale['signInExist']
         }		
 	];	
 	
@@ -87,8 +87,8 @@ const dom = function (language) {
             type: 'email'
 		},
 		{	
-			label: locale[password],
-            placeholder: locale[password],
+			label: locale['password'],
+            placeholder: locale['password'],
             name: 'password',
             type: 'password'
 		},
@@ -99,7 +99,7 @@ const dom = function (language) {
 		},	
 		{
             type: 'submit',
-            value: locale[signIn]
+            value: locale['signIn']
         }		
 	];
     
@@ -111,20 +111,20 @@ const dom = function (language) {
             type: 'email'
 		},
 		{	
-			label: locale[password],
-            placeholder: locale[password],
+			label: locale['password'],
+            placeholder: locale['password'],
             name: 'password',
             type: 'password'
 		},
 		{	
-			label: locale[repeatPassword],
-            placeholder: locale[password],
+			label: locale['repeatPassword'],
+            placeholder: locale['password'],
             name: 'repeat_password',
             type: 'password'
 		},
 		{	
-			label: locale[adminCode],
-            placeholder: locale[code],
+			label: locale['adminCode'],
+            placeholder: locale['code'],
             name: 'admin_code',
             type: 'password'
 		},
@@ -135,13 +135,13 @@ const dom = function (language) {
 		},
 		{
             type: 'submit',
-            value: locale[signUp]
+            value: locale['signUp']
         }		
 	];
 	
     const flightIdBrigadeFormArray = [
 		{	
-			label: locale[flightId],
+			label: locale['flightId'],
             placeholder: 'Id',
             name: 'flight_id_brigade',
             type: 'number',
@@ -154,13 +154,13 @@ const dom = function (language) {
 		},
 		{
             type: 'submit',
-            value: locale[submit]
+            value: locale['submit']
         }
 	];
     
     const flightIdAirportsFormArray = [
 		{	
-			label: locale[flightId],
+			label: locale['flightId'],
             placeholder: 'Id',
             name: 'flight_id_airports',
             type: 'number',
@@ -173,7 +173,7 @@ const dom = function (language) {
 		},
 		{
             type: 'submit',
-            value: locale[submit],
+            value: locale['submit'],
         }
 	
 	];
@@ -183,11 +183,11 @@ const dom = function (language) {
 			type: 'radio',
 			class: 'choice_radio',
 			name: 'flight_action',
-			label: locale[changeAirport],
+			label: locale['changeAirport'],
 			value: 'change_airport',
             page: 'airports',
 			idInput: {	
-				placeholder: locale[airportId],
+				placeholder: locale['airportId'],
 				id: 'input_airport_id',
 				type: 'number',
 	            name: 'airport_id',
@@ -198,7 +198,7 @@ const dom = function (language) {
 			type: 'radio',
 			class: 'choice_radio',
 			name: 'flight_action',
-			label: locale[cancel],
+			label: locale['cancel'],
 			value: 'cancel_flight'
 		},
 		{
@@ -404,7 +404,7 @@ const dom = function (language) {
     	repeat_password = document.getElementById("repeat_password");
     	
     	if(password.value != repeat_password.value) {
-    		repeat_password.setCustomValidity(locale[match]);
+    		repeat_password.setCustomValidity(locale['match']);
     	} 
     	else{
     		repeat_password.setCustomValidity("");
@@ -464,8 +464,8 @@ const dom = function (language) {
     }
     
     function onUpdadeClicked(){
-    	if(event.srcElement.value == locale[update]){
-    		event.srcElement.value = locale[save];
+    	if(event.srcElement.value == locale['update']){
+    		event.srcElement.value = locale['save'];
     		
     		switch(event.srcElement.id){
     		case 'ipilot1':
@@ -484,7 +484,7 @@ const dom = function (language) {
     		event.preventDefault();
     	}
     	else{
-    		event.srcElement.value = locale[update];
+    		event.srcElement.value = locale['update'];
     		
         	const form = event.srcElement.form;
         	const hidden = document.createElement('input');
