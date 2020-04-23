@@ -9,6 +9,7 @@
 <head>
 <title><fmt:message key="signIn" /></title>
 <link href="view/styles.css" rel="stylesheet" />
+<script src="view/script.js"></script>
 </head>
 <body>
 	<jsp:include page="language.jsp" />
@@ -28,6 +29,6 @@
 		<form id="login_registration_form" action="Airline"></form>
 		<form id="login_guest_form" action="Airline" method="POST"></form>
 	</div>
-	<script src="view/script.js">dom(${sessionScope.locale.language}).initPage();</script>
+	<script>dom("${sessionScope.locale.language}").initPage();</script>
 </body>
 </html>
