@@ -3,6 +3,9 @@ package model.dao;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -20,15 +23,18 @@ import model.exception.DAOException;
 /**User DAO class*/
 public class DAOUser extends DAO {
 	
-	@PersistenceContext(name="persistence/AppMgr", unitName = "Airline")
+	//@PersistenceContext(name="persistence/AppMgr", unitName = "Airline")
 	private EntityManager entityManager;
 	
 	/**
 	 * Constructor
 	 * @param entityManagerFactory - entity manager factory
+	 * @throws NamingException 
 	 */
-	public DAOUser(/*EntityManagerFactory entityManagerFactory*/) {
+	public DAOUser(/*EntityManagerFactory entityManagerFactory*/) throws NamingException {
 		//super(entityManagerFactory);
+		Context initCtx = new InitialContext();
+		entityManager = (EntityManager)initCtx.lookup("java:comp/env/persistence/AppMgr");
 	}
 
 	 /**
