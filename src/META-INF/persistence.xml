@@ -5,5 +5,11 @@
 	<persistence-unit name="Airline" transaction-type="JTA">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<jta-data-source>jdbc/DSAirline</jta-data-source>
+		<class>model.entity.Airport</class>
+		<class>model.entity.Brigade</class>
+		<class>model.entity.Flight</class>
+		<class>model.entity.Plane</class>
+		<class>model.entity.Stewardess</class>
+		<class>model.entity.User</class>
 	</persistence-unit>
 </persistence>
