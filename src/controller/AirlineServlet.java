@@ -2,8 +2,12 @@ package controller;
 
 import java.io.IOException;
 
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceUnit;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,6 +23,7 @@ import model.exception.DAOException;
 
 /**Airline servlet*/
 @WebServlet(name = "AirlineServlet", urlPatterns = "/Airline")
+@PersistenceContext(unitName="my-pu", name="persistence/AppMgr")
 public class AirlineServlet extends HttpServlet {
 
 	/**Serial version UID*/
@@ -28,17 +33,32 @@ public class AirlineServlet extends HttpServlet {
 	private CommandManager commandManager;
 	
 	/**Entity manager*/
-	@PersistenceContext(name="persistence/AppMgr" unitName = "Airline")
-	private EntityManager entityManager;
+	//@PersistenceContext(name="persistence/AppMgr" unitName = "Airline")
+	//private EntityManager entityManager;
+	
+	  @PersistenceUnit(unitName = "Airline")
+	  private EntityManagerFactory emf;
 	
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		ServletContext servletContext = getServletContext();	
-		servletContext.log("EM: " + entityManager);
-		JSPOperation operation = new JSPOperation(request, response, servletContext, entityManager);
+		
+	
+		  try {
+			  InitialContext ic = new InitialContext();
+			EntityManager em =
+			   (EntityManager) ic.lookup("java:comp/env/persistence/em");
+			servletContext.log("EM: " + em);
+		} catch (NamingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		servletContext.log("EMF: " + emf);
+		JSPOperation operation = new JSPOperation(request, response, servletContext, emf.createEntityManager());
 		JSPCommand command = null;
-		servletContext.log("EM2: " + entityManager);
+		servletContext.log("EMF2: " + emf);
 		
 		String page = request.getParameter("page");
 		switch (page) {
@@ -80,7 +100,7 @@ public class AirlineServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {			
 		ServletContext servletContext = getServletContext();
-		JSPOperation operation = new JSPOperation(request, response, servletContext, entityManager);
+		JSPOperation operation = new JSPOperation(request, response, servletContext, emf.createEntityManager());
 		JSPCommand command = null;
 		
 		String page = request.getParameter("page");
