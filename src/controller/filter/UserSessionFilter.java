@@ -28,7 +28,8 @@ public class UserSessionFilter implements Filter {
 		HttpSession session = ((HttpServletRequest) request).getSession();
 		User user = (User) session.getAttribute("user");
 		String page = request.getParameter("page");
-		if (user == null && page != null && !(page.equals("login") || page.equals("registration")) || page.equals("logout")) {
+		if (user == null && (page == null || page != null && 
+				!(page.equals("login") || page.equals("registration")) || page.equals("logout"))) {
 			request.getRequestDispatcher(Navigation.loginUri).forward(request, response);
 			return;
 		}
