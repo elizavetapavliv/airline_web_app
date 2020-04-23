@@ -28,7 +28,7 @@ public class AirlineServlet extends HttpServlet {
 	private CommandManager commandManager;
 	
 	/**Entity manager*/
-	@PersistenceContext(unitName = "Airline")
+	@PersistenceContext(name="persistence/AppMgr" unitName = "Airline")
 	private EntityManager entityManager;
 	
 	@Override
