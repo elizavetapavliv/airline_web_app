@@ -1,10 +1,8 @@
 package model.dao;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-
-import javax.naming.NamingException;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -16,18 +14,14 @@ import model.entity.User;
 import model.exception.DAOException;
 
 /**User DAO class*/
-public class DAOUser {
-	
-	/**Entity manager*/
-	private EntityManager entityManager;
+public class DAOUser extends DAO {
 	
 	/**
 	 * Constructor
-	 * @param entityManager - entity manager
-	 * @throws NamingException 
+	 * @param entityManagerFactory - entity manager factory
 	 */
-	public DAOUser(EntityManager entityManager) {
-		this.entityManager = entityManager;
+	public DAOUser(EntityManagerFactory entityManagerFactory) {
+		super(entityManagerFactory);
 	}
 
 	 /**
@@ -36,26 +30,26 @@ public class DAOUser {
 	 * @throws DAOException - when connection or query execution aren't successful 
 	 */
 	public void createUser(User user) throws DAOException {
-		/*EntityManager entityManager = null;
-	    EntityTransaction transaction = null;*/
+		EntityManager entityManager = null;
+	    EntityTransaction transaction = null;
 		try {
-		//	entityManager = entityManagerFactory.createEntityManager();
-			//transaction = entityManager.getTransaction();
-			//transaction.begin();
+			entityManager = entityManagerFactory.createEntityManager();
+			transaction = entityManager.getTransaction();
+			transaction.begin();
 			entityManager.persist(user);
-			//transaction.commit();
+			transaction.commit();
 		} 
 		catch (Exception e) {
-		/*	if (transaction != null && transaction.isActive()) {
+			if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
-			}*/
+			}
 			throw new DAOException("Can't insert user", e);
 		}
-		/*finally {
+		finally {
 			if(entityManager != null && entityManager.isOpen()) {
 				entityManager.close();
 			}
-		}*/
+		}
 	}
 	
 	/**
@@ -66,9 +60,9 @@ public class DAOUser {
 	 */
 	public User readUser(String email) throws DAOException {
 		User user = null;
-		//EntityManager entityManager = null;
+		EntityManager entityManager = null;
 		try {
-			//entityManager = entityManagerFactory.createEntityManager();
+			entityManager = entityManagerFactory.createEntityManager();
 			
 			Metamodel metamodel = entityManager.getMetamodel();		
 			EntityType<User> User_ = metamodel.entity(User.class);
@@ -83,16 +77,13 @@ public class DAOUser {
 	        return null;
 	    }
 		catch (Exception e) {
-			StringWriter sw = new StringWriter();
-			e.printStackTrace(new PrintWriter(sw));
-			String exceptionAsString = sw.toString();
-			throw new DAOException(/*"Can't obtain user"*/exceptionAsString, e);
+			throw new DAOException( "Can't obtain user", e);
 		} 
-	/*	finally {
+		finally {
 			if(entityManager != null && entityManager.isOpen()) {
 				entityManager.close();
 			}
-		}*/
+		}
 		return user;
 	}
 }

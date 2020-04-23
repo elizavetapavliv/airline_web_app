@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -16,8 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.dao.*;
-import model.entity.*;
-import model.exception.*;
+import model.entity.Brigade;
+import model.entity.Flight;
+import model.entity.User;
+import model.exception.AirlineException;
+import model.exception.DAOException;
+import model.entity.Airport;
 
 /**Class representing performing operation from request*/
 public class JSPOperation {
@@ -54,12 +58,12 @@ public class JSPOperation {
 	 * @param entityManagerFactory - entity manager factory for dao
 	 */
 	public JSPOperation(HttpServletRequest request, HttpServletResponse response, 
-			ServletContext servletContext, EntityManager entityManager) {		
-		daoFlight = new DAOFlight(entityManager);
-		daoBrigade = new DAOBrigade(entityManager);
-		daoPlane = new DAOPlane(entityManager);
-		daoAirport = new DAOAirport(entityManager);
-		daoUser = new DAOUser(entityManager);
+			ServletContext servletContext, EntityManagerFactory entityManagerFactory) {		
+		daoFlight = new DAOFlight(entityManagerFactory);
+		daoBrigade = new DAOBrigade(entityManagerFactory);
+		daoPlane = new DAOPlane(entityManagerFactory);
+		daoAirport = new DAOAirport(entityManagerFactory);
+		daoUser = new DAOUser(entityManagerFactory);
 		this.request = request;
 		this.response = response;
 		this.servletContext = servletContext;
@@ -219,12 +223,6 @@ public class JSPOperation {
 		}
 	}
 	
-	/**
-	 * Function for updating brigade info
-	 * @throws DAOException - when connection or query execution aren't successful 
-	 * @throws IOException - something wrong with servlet request 
-	 * @throws ServletException - something wrong with servlet request 
-	 */
 	public void updateBrigade() throws DAOException, ServletException, IOException {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");

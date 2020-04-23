@@ -2,12 +2,7 @@ package controller;
 
 import java.io.IOException;
 
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceUnit;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,9 +26,6 @@ public class AirlineServlet extends HttpServlet {
 	/**Command manager*/
 	private CommandManager commandManager;
 	
-	/**Entity manager*/
-	//@PersistenceContext(name="persistence/AppMgr" unitName = "Airline")
-	//private EntityManager entityManager;
 	/**Entity manager factory*/
 	private EntityManagerFactory entityManagerFactory;
 	
@@ -46,10 +38,8 @@ public class AirlineServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		ServletContext servletContext = getServletContext();	
-		servletContext.log("EMF: " + entityManagerFactory);
-		JSPOperation operation = new JSPOperation(request, response, servletContext, entityManagerFactory.createEntityManager());
+		JSPOperation operation = new JSPOperation(request, response, servletContext, entityManagerFactory);
 		JSPCommand command = null;
-		servletContext.log("EMF2: " + entityManagerFactory);
 		
 		String page = request.getParameter("page");
 		switch (page) {
@@ -91,7 +81,7 @@ public class AirlineServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {			
 		ServletContext servletContext = getServletContext();
-		JSPOperation operation = new JSPOperation(request, response, servletContext, entityManagerFactory.createEntityManager());
+		JSPOperation operation = new JSPOperation(request, response, servletContext, entityManagerFactory);
 		JSPCommand command = null;
 		
 		String page = request.getParameter("page");
