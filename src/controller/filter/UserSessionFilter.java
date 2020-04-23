@@ -31,7 +31,7 @@ public class UserSessionFilter implements Filter {
 		if (user == null && (page == null || page != null && 
 				!(page.equals("login") || page.equals("registration")) || page.equals("logout"))) {
 			request.getRequestDispatcher(Navigation.loginUri).forward(request, response);
-			return;
+		//	return;
 		}
 		chain.doFilter(request, response);
 	}
