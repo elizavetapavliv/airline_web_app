@@ -1,5 +1,8 @@
 package model.dao;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -81,7 +84,10 @@ public class DAOUser extends DAO {
 	        return null;
 	    }
 		catch (Exception e) {
-			throw new DAOException( "Can't obtain user", e);
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String exceptionAsString = sw.toString();
+			throw new DAOException(/*"Can't obtain user"*/exceptionAsString, e);
 		} 
 	/*	finally {
 			if(entityManager != null && entityManager.isOpen()) {
