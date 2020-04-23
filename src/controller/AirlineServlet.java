@@ -44,11 +44,11 @@ public class AirlineServlet extends HttpServlet {
 			throws IOException, ServletException {
 		ServletContext servletContext = getServletContext();	
 		
-	
+		EntityManager em ;
 		  try {
 			  InitialContext ic = new InitialContext();
-			EntityManager em =
-			   (EntityManager) ic.lookup("java:comp/env/persistence/em");
+			 em =
+			   (EntityManager) ic.lookup("java:comp/env/persistence/AppMgr");
 			servletContext.log("EM: " + em);
 		} catch (NamingException e1) {
 			// TODO Auto-generated catch block
@@ -56,7 +56,7 @@ public class AirlineServlet extends HttpServlet {
 		}
 		
 		servletContext.log("EMF: " + emf);
-		JSPOperation operation = new JSPOperation(request, response, servletContext, emf.createEntityManager());
+		JSPOperation operation = new JSPOperation(request, response, servletContext, em);
 		JSPCommand command = null;
 		servletContext.log("EMF2: " + emf);
 		
