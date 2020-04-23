@@ -35,8 +35,10 @@ public class AirlineServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		ServletContext servletContext = getServletContext();	
+		servletContext.log("EM: " + entityManager);
 		JSPOperation operation = new JSPOperation(request, response, servletContext, entityManager);
 		JSPCommand command = null;
+		servletContext.log("EM2: " + entityManager);
 		
 		String page = request.getParameter("page");
 		switch (page) {
