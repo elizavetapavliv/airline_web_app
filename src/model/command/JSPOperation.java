@@ -66,14 +66,7 @@ public class JSPOperation {
 		daoBrigade = new DAOBrigade();
 		daoPlane = new DAOPlane();
 		daoAirport = new DAOAirport();
-		try {
-			daoUser = new DAOUser();
-		} catch (NamingException e) {
-			StringWriter sw = new StringWriter();
-			e.printStackTrace(new PrintWriter(sw));
-			String exceptionAsString = sw.toString();
-			servletContext.log(exceptionAsString);
-		}
+		daoUser = new DAOUser();
 		this.request = request;
 		this.response = response;
 		this.servletContext = servletContext;

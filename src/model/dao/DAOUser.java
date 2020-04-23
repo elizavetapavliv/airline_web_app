@@ -23,7 +23,7 @@ import model.exception.DAOException;
 /**User DAO class*/
 public class DAOUser extends DAO {
 	
-	//@PersistenceContext(name="persistence/AppMgr", unitName = "Airline")
+	@PersistenceContext(name="persistence/AppMgr", unitName = "Airline")
 	private EntityManager entityManager;
 	
 	/**
@@ -31,10 +31,8 @@ public class DAOUser extends DAO {
 	 * @param entityManagerFactory - entity manager factory
 	 * @throws NamingException 
 	 */
-	public DAOUser(/*EntityManagerFactory entityManagerFactory*/) throws NamingException {
+	public DAOUser(/*EntityManagerFactory entityManagerFactory*/) {
 		//super(entityManagerFactory);
-		Context initCtx = new InitialContext();
-		entityManager = (EntityManager)initCtx.lookup("java:comp/env/persistence/AppMgr");
 	}
 
 	 /**

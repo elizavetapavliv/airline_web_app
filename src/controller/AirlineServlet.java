@@ -2,7 +2,9 @@ package controller;
 
 import java.io.IOException;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,6 +27,9 @@ public class AirlineServlet extends HttpServlet {
 
 	/**Command manager*/
 	private CommandManager commandManager;
+	
+	@PersistenceContext
+	EntityManager entityManager;
 	
 	/**Entity manager factory*/
 //	private EntityManagerFactory entityManagerFactory;
@@ -83,6 +88,7 @@ public class AirlineServlet extends HttpServlet {
 		ServletContext servletContext = getServletContext();
 		JSPOperation operation = new JSPOperation(request, response, servletContext/*, entityManagerFactory*/);
 		JSPCommand command = null;
+		entityManager.getTransaction();
 		
 		String page = request.getParameter("page");
 		if (page != null) {
