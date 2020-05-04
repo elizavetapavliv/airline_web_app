@@ -34,7 +34,7 @@
 	<textArea id="chatWindow" rows="10" readonly></textArea>
 	<div>
 		<input id="chatInput" placeholder="<fmt:message key="message"/>"/>
-		<button onclick="sendMessage()" ><fmt:message key="send"/></button>
+		<button id="send" ><fmt:message key="send"/></button>
 	</div>
 	<script>userName = "$userName"; you = "<fmt:message key="you"/>";</script>
 	<a href="Airline"><fmt:message key="toHome" /></a>

@@ -11,6 +11,7 @@ function init() {
     websocket.onerror = function (event) {
         websocketError(event);
     };
+    document.getElementById('send').onclick=sendMessage;
 }
 
 function websocketOpen(event) {
