@@ -26,7 +26,7 @@
 			</c:otherwise>
 		</c:choose>
 	</h1>
-		<c:if test="${sessionScope['user'].getTypeString() == 'admin'}">
+		<c:if test="${sessionScope.user.getType() == 'admin'}">
 			<p class="info">
 				<fmt:message key="chatAdminInfo" />
 			</p>
