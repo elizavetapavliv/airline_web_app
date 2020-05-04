@@ -13,7 +13,10 @@
 <script src="view/script.js"></script>
 </head>
 <body>
-	<jsp:include page="language.jsp" />
+	<div>	
+		<jsp:include page="chat_form.jsp" />
+		<jsp:include page="language.jsp" />
+	</div>
 	<h1 class="info"><fmt:message key="updateCancel" /></h1>
 	<form id="flight_id_airports_form" action="Airline"></form>
 	<c:if test="${not empty airports}">

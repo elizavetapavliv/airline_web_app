@@ -138,11 +138,11 @@ h1.error{
     vertical-align: middle;
 }
 
-.language{
+.header{
 	text-align: right;
 	margin-right: 25px;
 }
 
-.language select{
+.header select{
 	font-family: consolas;
 }

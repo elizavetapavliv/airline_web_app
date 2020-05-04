@@ -12,7 +12,10 @@
 <link href="view/styles.css" rel="stylesheet">
 </head>
 <body>
-	<jsp:include page="language.jsp" />
+	<div>	
+		<jsp:include page="chat_form.jsp" />
+		<jsp:include page="language.jsp" />
+	</div>
 	<h1 class="info"><fmt:message key="delayedFlights"/></h1>	
 	<table class="table">
 		<thead>

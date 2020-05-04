@@ -17,7 +17,9 @@ const dom = function (language) {
 		cancel: 'Cancel flight',
 		match: "Passwords don't match",
 		update: 'Update',
-		save: 'Save'
+		save: 'Save',
+		userName: 'Your name',
+		id: 'Id'
 	}
 	
 	let ru = {
@@ -37,7 +39,9 @@ const dom = function (language) {
 		cancel: 'Отменить рейс',
 		match: 'Пароли не совпадают',
 		update: 'Изменить',
-		save: 'Сохранить'
+		save: 'Сохранить',
+		userName: 'Ваше имя',
+		id: 'Номер'
 	}
 	
 	const locale = language == 'en'? en: ru;
@@ -142,7 +146,7 @@ const dom = function (language) {
     const flightIdBrigadeFormArray = [
 		{	
 			label: locale['flightId'],
-            placeholder: 'Id',
+            placeholder: locale['Id'],
             name: 'flight_id_brigade',
             type: 'number',
             min: '1'
@@ -161,7 +165,7 @@ const dom = function (language) {
     const flightIdAirportsFormArray = [
 		{	
 			label: locale['flightId'],
-            placeholder: 'Id',
+            placeholder: locale['Id'],
             name: 'flight_id_airports',
             type: 'number',
             min: '1'
