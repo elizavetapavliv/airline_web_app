@@ -1,0 +1,150 @@
+@charset "UTF-8";
+
+h1.info {
+	border-top: 5px solid #008B8B;
+	border-bottom: 5px solid #008B8B;
+	text-align:center;
+	font-family: consolas;
+	color:#1177DF;
+	font-size:50;
+	width:97%;
+	line-height:200%;
+}
+
+a:hover{
+	color: #073DA6;
+    text-decoration: none; 
+}
+
+a, label{
+	color: #1177DF;
+	font-family: consolas;
+	font-size:20;
+}
+
+label{
+	margin-right: 20px;
+	margin-left: 20px;
+}
+
+input[type=submit] {
+  background-color: #90D1F5;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 20px;
+  font-family: consolas;
+}
+
+input {
+  font-family: consolas;
+  border: solid;
+  border-color: #90D1F5;
+}
+
+.menu li{
+	color: #1177DF;
+}
+
+.table, .vertical_table{
+	background-color: #fefefe;
+    margin: 2% auto;
+    padding: 20px;
+    border: 1px solid #888;
+	border:2px solid #008B8B;
+	text-align:center;
+	margin-left:2%;
+	border-collapse: collapse;
+}
+
+.table th, .vertical_table th{
+	background-color:#90D1F5;
+	border:2px solid #008B8B;
+	font-family:consolas;
+	font-size:15;
+	color:black;
+	height: 20dp;
+}
+
+.table td, .vertical_table td{
+	border: 2px solid #008B8B;
+	font-family:consolas;
+	font-size:15;
+}
+
+.table{
+	width:93%;
+}
+
+.vertical_table{
+	width: 50%;
+}
+
+#brigade_table td:nth-child(3){
+	width:5%;
+}
+
+.table thead tr:first-child{
+	height: 50px;
+}
+
+.vertical_table tr{
+	height: 40px;
+}
+
+.vertical_table th:first-child{
+	width:40%;
+}
+
+.choice{
+	margin: 10px 10px;
+}
+
+.choice_radio{
+	margin-right:20px;
+}
+
+.choice_submit{
+	margin-top: 10px;
+}
+
+.info{
+	margin: 15px;
+    font-family: consolas;
+	text-align: center;
+}
+
+.error{
+	color: #860D2C;
+	font-family: consolas;
+}
+
+h1.error{
+	color: #860D2C;
+	font-family: consolas;
+}
+
+.button_container form {
+    display: inline;
+}
+
+.button_container {
+	margin-top: 40px;
+}
+
+.button_container button {
+    display: inline;
+    vertical-align: middle;
+}
+
+.chat_language{
+	text-align: right;
+	margin-right: 25px;
+	float: right;
+	margin-bottom: 10px;
+}
+
+.chat_language select{
+	font-family: consolas;
+}
