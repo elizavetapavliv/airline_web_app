@@ -10,7 +10,7 @@
 <head>
 <title><fmt:message key="chatTitle" /></title>
 <link href="view/styles.css" rel="stylesheet" />
-<script src="script/chatScript.js"></script>
+<script src="script/chat_script.js"></script>
 </head>
 <body>
 	<jsp:include page="language.jsp" />
@@ -34,7 +34,7 @@
 	<textArea id="chatWindow" rows="10" readonly></textArea>
 	<div>
 		<input id="chatInput" placeholder="<fmt:message key="message"/>"/>
-		<button value="<fmt:message key="send"/>" onclick="sendMessage()" ></button>
+		<button onclick="sendMessage()" ><fmt:message key="send"/></button>
 	</div>
 	<script>userName = "$userName"; you = "<fmt:message key="you"/>";</script>
 	<a href="Airline"><fmt:message key="toHome" /></a>
