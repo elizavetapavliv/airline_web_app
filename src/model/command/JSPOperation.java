@@ -271,6 +271,10 @@ public class JSPOperation {
 		request.getRequestDispatcher(Navigation.airlineUri).forward(request, response);
 	}
 	
+	public void goToChatPage() throws ServletException, IOException {
+		request.getRequestDispatcher(Navigation.chatUri).forward(request, response);
+	}
+	
 	public void registrateUser() throws DAOException, ServletException, IOException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");

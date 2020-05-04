@@ -12,11 +12,9 @@ ${pageContext.ELContext.importHandler.importClass('java.net.URLDecoder')}
 <title><fmt:message key="airline"/></title>
 <link href="view/styles.css" rel="stylesheet"/>
 </head>
-<body>
-	<div>	
-		<jsp:include page="chat_form.jsp" />
-		<jsp:include page="language.jsp" />
-	</div>
+<body>	
+	<jsp:include page="language.jsp" />
+	<jsp:include page="chat_form.jsp" />
 	<h1 class="info"><fmt:message key="airline"/></h1>
 	<p class="info">
 		<fmt:message key="lastSession"/>: ${URLDecoder.decode(cookie['lastSessionDateTime'].getValue(), 'UTF-8')}<br>

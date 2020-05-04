@@ -5,7 +5,7 @@
 <fmt:requestEncoding value="UTF-8" />
 <fmt:setLocale value="${sessionScope.locale}" />
 <fmt:setBundle basename="locale" />
-<form class="header" action="Airline">
+<form class="chat_language" action="Airline">
 	<input type="hidden" name="page" value="chat" />
 	<input type="submit" value="<fmt:message key="chatTitle" />"/>
 </form>

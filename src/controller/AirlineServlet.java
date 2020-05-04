@@ -104,7 +104,10 @@ public class AirlineServlet extends HttpServlet {
 				break;
 			case "registration":
 				command = new RegistrationGetCommand(operation); 
-				break;				
+				break;		
+			case "chat":
+				command = new ChatCommand(operation); 
+				break;
 			case "airline":
 				command = new AirlineCommand(operation); 
 				break;				
