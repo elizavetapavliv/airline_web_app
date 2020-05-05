@@ -11,39 +11,35 @@ public class ChatEndpoint {
 
 	@OnMessage
 	public void onMessage(Session session, String message) {
-		if (!session.getUserProperties().containsKey("sender")) {
-			String[] info = message.split(": ");
-			session.getUserProperties().put("sender", info[0]);
+		if (!session.getUserProperties().containsKey("userName")) {
+			session.getUserProperties().put("userName", message);
 		} 
 		else {
-			String sender = (String) session.getUserProperties().get("sender");
+			String sender = (String) session.getUserProperties().get("userName");
 			String receiver;
-			if(sender.equals("Admin")) {
+			if (sender.equals("Admin")) {
 				String[] info = message.split(": ");
 				receiver = info[0];
 				message = sender + ": " + info[1];
-			}
+			} 
 			else {
 				receiver = "Admin";
 				message = sender + ": " + message;
 			}
 
 			for (Session sessionReceiver : session.getOpenSessions()) {
-				if (sessionReceiver.isOpen()) {
-					if (sessionReceiver.getUserProperties().containsKey("sender")) {
-						String sessionSenderName = (String) sessionReceiver.getUserProperties().get("sender");
-						if (sessionSenderName.equals(receiver)) {
-							try {
-								sessionReceiver.getBasicRemote().sendText(message);
-							} 
-							catch (IOException e) {
-								e.printStackTrace();
-							}
+				if (sessionReceiver.isOpen() && sessionReceiver.getUserProperties().containsKey("userName")) {
+					String sessionUserName = (String) sessionReceiver.getUserProperties().get("userName");
+					if (sessionUserName.equals(receiver)) {
+						try {
+							sessionReceiver.getBasicRemote().sendText(message);
+						} 
+						catch (IOException e) {
+							e.printStackTrace();
 						}
 					}
 				}
 			}
 		}
-
 	}
 }

@@ -13,7 +13,9 @@
 <script src="view/chat_script.js"></script>
 </head>
 <body>
-	<jsp:include page="language.jsp" />
+	<div class="chat_language">
+		<jsp:include page="language.jsp" />
+	</div>
 	<h1 class="info">
 		<c:choose>
 			<c:when test="${sessionScope.user.getType() == 'admin'}">

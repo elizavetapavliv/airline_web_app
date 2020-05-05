@@ -146,7 +146,7 @@ const dom = function (language) {
     const flightIdBrigadeFormArray = [
 		{	
 			label: locale['flightId'],
-            placeholder: locale['Id'],
+            placeholder: locale['id'],
             name: 'flight_id_brigade',
             type: 'number',
             min: '1'
@@ -165,7 +165,7 @@ const dom = function (language) {
     const flightIdAirportsFormArray = [
 		{	
 			label: locale['flightId'],
-            placeholder: locale['Id'],
+            placeholder: locale['id'],
             name: 'flight_id_airports',
             type: 'number',
             min: '1'
