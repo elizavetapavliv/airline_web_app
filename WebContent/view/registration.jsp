@@ -13,7 +13,9 @@
 <script src="view/script.js"></script>
 </head>
 <body>
-	<jsp:include page="language.jsp" />
+	<div class="chat_language">
+		<jsp:include page="language.jsp" />
+	</div>
 	<h1 class="info"><fmt:message key="signUp" /></h1>
 	<p class="error">${adminCodeError}</p>
 	<form id="registration_form" action="Airline" method="POST"></form>

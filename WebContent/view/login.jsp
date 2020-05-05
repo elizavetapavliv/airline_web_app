@@ -12,7 +12,9 @@
 <script src="view/script.js"></script>
 </head>
 <body>
-	<jsp:include page="language.jsp" />
+	<div class="chat_language">
+		<jsp:include page="language.jsp" />
+	</div>
 	<h1 class="info"><fmt:message key="welcome" />!</h1>
 	<p class="info">
 		<b><fmt:message key="administrator" /></b> <fmt:message key="assign" /> <b><fmt:message key="planeAssign" /></b> 

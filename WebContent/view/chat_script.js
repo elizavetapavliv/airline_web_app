@@ -1,7 +1,7 @@
 var websocket, userName, you;
 
 function init() {
-    websocket = new WebSocket('ws://airline-app-bel.herokuapp.com/chat');
+    websocket = new WebSocket('wss://airline-app-bel.herokuapp.com/chat');
     websocket.onopen = function (event) {
         websocketOpen(event);
     };

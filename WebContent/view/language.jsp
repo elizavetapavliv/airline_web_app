@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<form class="chat_language">
+<form>
 	<select name="language" onchange='this.form.submit()'>
 		<c:choose>
 			<c:when test="${sessionScope.locale.language=='ru'}">

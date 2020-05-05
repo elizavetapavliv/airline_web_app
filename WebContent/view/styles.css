@@ -138,17 +138,17 @@ h1.error{
     vertical-align: middle;
 }
 
+.chat_language{
+	display: inline-flex;
+	margin-left: 1050px;
+}
+
 .chat_language form{
 	margin-right: 25px;
 }
 
 .chat_language select{
 	font-family: consolas;
-}
-
-.chat_language div{
-	display: inline-flex;
-	margin-left: 1050px;
 }
 
 #chat_window{
