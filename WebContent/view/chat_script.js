@@ -1,7 +1,7 @@
 var websocket, userName, you;
 
 function init() {
-    websocket = new WebSocket('wss://' +  window.location.host + window.location.pathname + 'chat');
+    websocket = new WebSocket('wss://' +  window.location.host + window.location.pathname + '/chat');
     websocket.onopen = function (event) {
         websocketOpen(event);
     };
