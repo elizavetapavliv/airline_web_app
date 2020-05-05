@@ -138,13 +138,20 @@ h1.error{
     vertical-align: middle;
 }
 
-.chat_language{
-	text-align: right;
+.chat_language form{
 	margin-right: 25px;
-	float: right;
-	margin-bottom: 10px;
 }
 
 .chat_language select{
 	font-family: consolas;
+}
+
+.chat_language div{
+	display: inline-flex;
+	margin-left: 1050px;
+}
+
+#chat_window{
+	width: 400px;
+    height: 300px;
 }

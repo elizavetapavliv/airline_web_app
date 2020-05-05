@@ -21,7 +21,7 @@ function websocketOpen(event) {
 
 function websocketMessage(event) {
     console.log("websocketMessage invoked");
-    document.getElementById('chatWindow').value += '\r' + event.data;
+    document.getElementById('chat_window').value += '\r' + event.data;
 }
 
 function websocketError(event) {
@@ -29,9 +29,9 @@ function websocketError(event) {
 }
 
 function sendMessage() {
-    var input = document.getElementById('chatInput');
+    var input = document.getElementById('chat_input');
 	websocket.send(userName + ": " + input.value);
-	document.getElementById('chatWindow').value += '\r' + you + ': ' + input.value;
+	document.getElementById('chat_window').value += '\r' + you + ': ' + input.value;
     input.value = "";
 }
 

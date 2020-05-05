@@ -12,7 +12,7 @@
 <link href="view/styles.css" rel="stylesheet">
 </head>
 <body>
-	<div>	
+	<div class="chat_language">
 		<jsp:include page="chat_form.jsp" />
 		<jsp:include page="language.jsp" />
 	</div>
