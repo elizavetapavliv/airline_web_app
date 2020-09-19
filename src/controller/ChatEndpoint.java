@@ -10,7 +10,7 @@ import javax.websocket.server.ServerEndpoint;
 public class ChatEndpoint {
 
 	@OnMessage
-	public void onMessage(Session session, String message) {
+	public void onMessage(Session session, String message) {		
 		if (!session.getUserProperties().containsKey("userName")) {
 			session.getUserProperties().put("userName", message);
 		} 

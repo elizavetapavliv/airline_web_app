@@ -38,7 +38,7 @@
 		<input id="chat_input" placeholder="<fmt:message key="message"/>"/>
 		<button id="send" ><fmt:message key="send"/></button>
 	</div>
-	<script>userName = "$userName"; you = "<fmt:message key="you"/>";</script>
+	<script>userName = "${userName}"; you = "<fmt:message key="you"/>";</script>
 	<a href="Airline"><fmt:message key="toHome" /></a>
 </body>
 </html>
